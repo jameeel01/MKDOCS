@@ -3,5 +3,18 @@ site_url: https://sitename.example
 theme:
   name: material
   palette:
-    scheme: slate
-    primary: orange
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Dark mode
+      primary: orange
+      accent: deep purple
+
+    # Light Mode
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: orange
+      accent: deep orange

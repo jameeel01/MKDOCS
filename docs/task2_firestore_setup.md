@@ -1,4 +1,4 @@
-# Task 2: Setting up Firestore Database
+# Setting up Firestore Database
 
 ## Overview
 
@@ -22,7 +22,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     A submenu expands below the Build heading.
 
     <!-- SCREENSHOT: Left sidebar with [Databases and Storage] expanded showing submenu items including Firestore. Highlight the sidebar area. -->
-    ![Firebase sidebar with Databases and Storage menu expanded](images/placeholder_build_menu.png "Databases & Storage submenu in Firebase Console")
+    ![Firebase sidebar with Databases and Storage menu expanded](assets/firestore_setup_1.png "Databases & Storage submenu in Firebase Console")
     *Figure 1: The Databases & Storage submenu in the left sidebar.*
 
 3. **Click** [Firestore].
@@ -30,7 +30,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     The Firestore landing page appears with a "Create database" button.
 
     <!-- SCREENSHOT: Firestore landing page showing the "Create database" button in the center. -->
-    ![Firestore landing page with Create database button](images/placeholder_firestore_landing.png "Firestore Database landing page")
+    ![Firestore landing page with Create database button](assets/firestore_setup_2.png "Firestore Database landing page")
     *Figure 2: The Firestore Database landing page.*
 
 4. **Click** [Create database].
@@ -47,7 +47,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
         The database location **cannot be changed** after creation. Make sure you select the correct region before proceeding. Choosing a distant region will increase data retrieval times for your users.
 
     <!-- SCREENSHOT: Location dropdown with "us-west1 (Oregon)" selected or highlighted. -->
-    ![Firestore location selection dropdown](images/placeholder_location_select.png "Selecting Firestore database location")
+    ![Firestore location selection dropdown](assets/firestore_setup_3.png "Selecting Firestore database location")
     *Figure 3: Selecting the Oregon database location.*
 
 8. **Click** [Next].
@@ -63,7 +63,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
         The Firebase Console will display the exact expiry date for your test mode rules. Take note of this date.
 
     <!-- SCREENSHOT: Security rules screen with "Start in test mode" radio button selected, showing the expiry date text. -->
-    ![Security rules screen with test mode selected](images/placeholder_test_mode.png "Start in test mode selected")
+    ![Security rules screen with test mode selected](assets/firestore_setup_4.png "Start in test mode selected")
     *Figure 4: Selecting test mode for security rules.*
 
 10. **Click** [Create].
@@ -71,7 +71,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     Firestore takes a few seconds to provision your database. Once complete, the Firestore data viewer appears. It will be empty.
 
     <!-- SCREENSHOT: Empty Firestore data viewer showing the "Start collection" prompt in the center. -->
-    ![Empty Firestore data viewer](images/placeholder_empty_firestore.png "Empty Firestore data viewer")
+    ![Empty Firestore data viewer](assets/firestore_setup_5.png "Empty Firestore data viewer")
     *Figure 5: The empty Firestore data viewer, ready for data.*
 
 !!! success
@@ -113,13 +113,13 @@ Before writing JavaScript code, you will add a test document using the Firebase 
 1. From the Firestore data viewer, **click** [Start collection].
 
     <!-- SCREENSHOT: Firestore viewer with the "Start collection" link/button highlighted. -->
-    ![Start collection button in Firestore](images/placeholder_start_collection.png "Start collection button")
+    ![Start collection button in Firestore](assets/firestore_setup_6.png "Start collection button")
     *Figure 6: The Start collection button.*
 
 2. **Enter** `users` as the Collection ID.
 
     <!-- SCREENSHOT: The "Start a collection" dialog with "users" typed in the Collection ID field. -->
-    ![Collection ID dialog with users entered](images/placeholder_collection_id.png "Entering the Collection ID")
+    ![Collection ID dialog with users entered](assets/firestore_setup_7.png  "Entering the Collection ID")
     *Figure 7: Entering the collection name.*
 
 3. **Click** [Next].
@@ -147,7 +147,7 @@ Before writing JavaScript code, you will add a test document using the Firebase 
     - Value: `Vancouver`
 
     <!-- SCREENSHOT: The "Add a document" panel showing all three fields filled in (name, email, city) with the Auto-ID generated. -->
-    ![Add a document panel with three fields filled in](images/placeholder_add_document.png "Adding a document with fields")
+    ![Add a document panel with three fields filled in](assets/firestore_setup_8.png  "Adding a document with fields")
     *Figure 8: A completed document ready to save.*
 
 8. **Click** [Save].
@@ -155,7 +155,7 @@ Before writing JavaScript code, you will add a test document using the Firebase 
     The document now appears in the Firestore data viewer under the `users` collection.
 
     <!-- SCREENSHOT: Firestore data viewer showing the "users" collection with the newly created document and its fields visible. -->
-    ![Firestore viewer showing the new document](images/placeholder_document_saved.png "Saved document in Firestore")
+    ![Firestore viewer showing the new document](assets/firestore_setup_9.png "Saved document in Firestore")
     *Figure 9: The saved document visible in the Firestore data viewer.*
 
 !!! success
@@ -273,7 +273,7 @@ Next, you will add JavaScript code that writes a new document to Firestore direc
     ```
 
     <!-- SCREENSHOT: Chrome DevTools console showing the "Document written with ID: ..." success message. -->
-    ![Console showing successful document write](images/placeholder_write_output.png "Firestore write confirmation in console")
+    ![Console showing successful document write](assets/firestore_setup_10.png"Firestore write confirmation in console")
     *Figure 11: Confirmation that a new document was written to Firestore.*
 
 6. **Return** to the Firebase Console in your browser.
@@ -283,7 +283,7 @@ Next, you will add JavaScript code that writes a new document to Firestore direc
 8. **Verify** that the new document appears in the data viewer with the fields `name: "Jane Doe"`, `email: "janedoe@bcit.ca"`, and `city: "Surrey"`.
 
     <!-- SCREENSHOT: Firestore data viewer showing two documents in the "users" collection — the original test document and the newly written "Jane Doe" document. -->
-    ![Firestore viewer showing two documents](images/placeholder_two_documents.png "Two documents in the users collection")
+    ![Firestore viewer showing two documents](assets/firestore_setup_11.png "Two documents in the users collection")
     *Figure 12: The users collection now contains two documents.*
 
 !!! success

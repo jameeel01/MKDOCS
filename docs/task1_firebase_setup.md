@@ -1,4 +1,4 @@
-# Initial Firebase Setup
+# Task 1: Setting up Firebase
 
 ## Overview
 

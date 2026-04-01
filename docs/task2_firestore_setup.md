@@ -1,4 +1,4 @@
-# Setting Up Cloud Firestore
+# Task 2: Setting up Firestore Database
 
 ## Overview
 
@@ -41,15 +41,14 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
 
 6. **Click** [Next].
 
-
 7. **Select** a Firestore location from the dropdown menu. **Choose** `northamerica-northeast1 (Montréal)` as it is the closest region to Vancouver.
 
     !!! danger
         The database location **cannot be changed** after creation. Make sure you select the correct region before proceeding. Choosing a distant region will increase data retrieval times for your users.
 
-    <!-- SCREENSHOT: Location dropdown with "northamerica-northeast1 (Montréal)" selected or highlighted. -->
+    <!-- SCREENSHOT: Location dropdown with "us-west1 (Oregon)" selected or highlighted. -->
     ![Firestore location selection dropdown](images/placeholder_location_select.png "Selecting Firestore database location")
-    *Figure 3: Selecting the Montréal database location.*
+    *Figure 3: Selecting the Oregon database location.*
 
 8. **Click** [Next].
 

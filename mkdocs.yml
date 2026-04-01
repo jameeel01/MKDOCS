@@ -27,6 +27,7 @@ theme:
     - content.code.copy
     - navigation.sections
     - navigation.top
+    - toc.integrate
 
 nav:
   - Home: index.md

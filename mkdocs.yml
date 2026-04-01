@@ -2,13 +2,17 @@ site_name: My MkDocs Material Documentation
 site_url: https://sitename.example
 theme:
   name: material
+  logo: assets/logo.png
+  font:
+    text: Google Sans
+    code: Red Hat Mono
   palette:
     # Dark Mode
     - scheme: slate
       toggle:
         icon: material/weather-sunny
         name: Dark mode
-      primary: orange
+      primary: deep orange
       accent: deep purple
 
     # Light Mode
@@ -16,5 +20,8 @@ theme:
       toggle:
         icon: material/weather-night
         name: Light mode
-      primary: orange
+      primary: deep orange
       accent: deep orange
+
+markdown_extensions:
+  - attr_list

@@ -17,15 +17,15 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
 
 1. **Open** the [Firebase Console](https://console.firebase.google.com) and **click** on your project name to open it.
 
-2. **Click** [Build] in the left sidebar menu.
+2. **Click** [Databases & Storage] in the left sidebar menu.
 
     A submenu expands below the Build heading.
 
-    <!-- SCREENSHOT: Left sidebar with [Build] expanded showing submenu items including Firestore Database. Highlight the sidebar area. -->
-    ![Firebase sidebar with Build menu expanded](images/placeholder_build_menu.png "Build submenu in Firebase Console")
-    *Figure 1: The Build submenu in the left sidebar.*
+    <!-- SCREENSHOT: Left sidebar with [Databases and Storage] expanded showing submenu items including Firestore. Highlight the sidebar area. -->
+    ![Firebase sidebar with Databases and Storage menu expanded](images/placeholder_build_menu.png "Databases & Storage submenu in Firebase Console")
+    *Figure 1: The Databases & Storage submenu in the left sidebar.*
 
-3. **Click** [Firestore Database].
+3. **Click** [Firestore].
 
     The Firestore landing page appears with a "Create database" button.
 
@@ -37,7 +37,12 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
 
     A setup wizard opens.
 
-5. **Select** a Firestore location from the dropdown menu. **Choose** `northamerica-northeast1 (Montréal)` as it is the closest region to Vancouver.
+5. **Select** Standard Edition.
+
+6. **Click** [Next].
+
+
+7. **Select** a Firestore location from the dropdown menu. **Choose** `northamerica-northeast1 (Montréal)` as it is the closest region to Vancouver.
 
     !!! danger
         The database location **cannot be changed** after creation. Make sure you select the correct region before proceeding. Choosing a distant region will increase data retrieval times for your users.
@@ -46,9 +51,9 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     ![Firestore location selection dropdown](images/placeholder_location_select.png "Selecting Firestore database location")
     *Figure 3: Selecting the Montréal database location.*
 
-6. **Click** [Next].
+8. **Click** [Next].
 
-7. **Select** "Start in test mode."
+9. **Select** "Start in test mode."
 
     Test mode allows open read and write access for 30 days, which is suitable for development.
 
@@ -62,7 +67,7 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     ![Security rules screen with test mode selected](images/placeholder_test_mode.png "Start in test mode selected")
     *Figure 4: Selecting test mode for security rules.*
 
-8. **Click** [Create].
+10. **Click** [Create].
 
     Firestore takes a few seconds to provision your database. Once complete, the Firestore data viewer appears. It will be empty.
 

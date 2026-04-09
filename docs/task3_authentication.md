@@ -6,13 +6,13 @@ This section walks you through enabling Firebase [Authentication](glossary.md#au
 
 The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `login.html` page when they visit a protected page without being signed in.
 
-!!! note
+!!! note "Pre-requisite steps"
     Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) 
     and [Task 2: Setting Up Cloud Firestore Database](task2_firestore_setup.md) 
     before starting this section. Your project must already have Firebase installed 
     as a Node package and have a working `src/firebaseConfig.js` skeleton.
 
-!!! note
+!!! note "Firebase version and configuration environment"
     Your COMP 1800 project uses the **Firebase v9 modular SDK** bundled through [Vite](glossary.md#vite). All Firebase functions are imported using ES module `import` statements rather than loaded via `<script>` tags.
 ---
 
@@ -35,7 +35,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
 
 6. **Toggle** on the first switch labelled "Email/Password".
  
-    !!! note
+    !!! note 
         Do **not** enable the second toggle labelled "Email link (passwordless sign-in)." Your COMP 1800 project will use standard password-based login only.
  
     ![Email/Password configuration panel with the top toggle enabled](assets/firebase_authentication_2.png "Enabling Email/Password authentication")

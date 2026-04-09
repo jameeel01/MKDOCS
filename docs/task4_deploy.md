@@ -6,10 +6,10 @@ This section walks you through installing the Firebase CLI, logging in, building
  
 By the end of this page, your project will be publicly accessible at a `web.app` URL.
  
-!!! note
+!!! warning
     Make sure you have completed [Task 1: Initial Firebase Setup](task1_firebase_setup.md) before starting this section. Node.js version 16 or higher must be installed. To check, open your terminal and run `node -v`.
  
-!!! warning
+!!! danger
     Deploying your project makes it **publicly accessible on the internet.** Confirm that your project does not contain any private credentials in plain JavaScript files, or personal information you do not intend to share.
  
 ---

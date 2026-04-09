@@ -1,4 +1,4 @@
-# Initial Firebase Setup
+# Setting up Firebase
 
 ## Overview
 
@@ -24,7 +24,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
     At this point, the Firebase Console dashboard appears. If this is your first time, the page may be mostly empty.
 
     <!-- SCREENSHOT: Firebase Console dashboard showing the main page with "Add project" button visible. Crop to show just the center of the page. -->
-    ![Firebase Console dashboard showing the Add project button](images/placeholder_console_dashboard.png "Firebase Console dashboard")
+    ![Firebase Console dashboard showing the Add project button](assets/firebase_setup_1.png "Firebase Console dashboard")
     *Figure 1: The Firebase Console dashboard.*
 
 3. **Click** [Add project].
@@ -32,7 +32,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
     The "Create a project" wizard opens with Step 1 of 3.
 
     <!-- SCREENSHOT: The "Create a project" wizard Step 1, showing the project name input field. -->
-    ![Create a project wizard showing the project name input](images/placeholder_create_project.png "Create a project wizard - Step 1")
+    ![Create a project wizard showing the project name input](assets/firebase_setup_2.png "Create a project wizard - Step 1")
     *Figure 2: The Create a project wizard - entering a project name.*
 
 4. **Enter** a project name (e.g., `comp1800-bby00` where `00` is your team number).
@@ -48,7 +48,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
         Google Analytics is not required for COMP 1800. Disabling it simplifies the setup. You can always enable it later from your project settings.
 
     <!-- SCREENSHOT: Google Analytics toggle screen with the switch in the OFF position. -->
-    ![Google Analytics toggle switched off](images/placeholder_analytics_off.png "Google Analytics disabled")
+    ![Google Analytics toggle switched off](assets/firebase_setup_3.png "Google Analytics disabled")
     *Figure 3: Disabling Google Analytics.*
 
 7. **Click** [Create project].
@@ -71,7 +71,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 1. From the project dashboard, **click** the **web icon** ( `</>` ) in the center of the page under "Get started by adding Firebase to your app."
 
     <!-- SCREENSHOT: Project dashboard showing the three platform icons (iOS, Android, Web). Circle or highlight the web icon (</>). -->
-    ![Project dashboard with the web app icon highlighted](images/placeholder_web_icon.png "Add Firebase to your web app")
+    ![Project dashboard with the web app icon highlighted](assets/firebase_setup_4.png "Add Firebase to your web app")
     *Figure 4: Selecting the web platform icon.*
 
 2. **Enter** a nickname for your app (e.g., `comp1800-bby00-app`).
@@ -84,7 +84,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
         Checking this box now saves you a step later when you deploy your project in Task 4.
 
     <!-- SCREENSHOT: The "Add Firebase to your web app" panel showing the nickname field and the Firebase Hosting checkbox checked. -->
-    ![Register app panel with hosting checkbox checked](images/placeholder_register_app.png "Register web app panel")
+    ![Register app panel with hosting checkbox checked](assets/firebase_setup_5.png "Register web app panel")
     *Figure 5: Registering your web app with Firebase Hosting enabled.*
 
 4. **Click** [Register app].
@@ -92,10 +92,10 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
     At this point, Firebase displays a code block titled "Add Firebase SDK." This contains your unique Firebase configuration.
 
     <!-- SCREENSHOT: The Firebase SDK configuration code block that appears after registering. Make sure the full code snippet is visible. -->
-    ![Firebase SDK configuration code block](images/placeholder_firebase_config.png "Firebase configuration keys")
+    ![Firebase SDK configuration code block](assets/firebase_setup_6.png "Firebase configuration keys")
     *Figure 6: Your Firebase configuration code block.*
 
-5. **Copy** the entire code block shown on screen. You will need this in the next section.
+5. **Copy** the entire code block shown on your screen. You will need this in the next section.
 
     !!! warning
         Do not share your Firebase configuration keys in a public GitHub repository without proper `.gitignore` protection. While these keys are not passwords, exposing them without security rules can allow unauthorized access to your Firebase services.
@@ -215,7 +215,7 @@ With your configuration keys ready, you can now connect Firebase to your actual 
     At this point, the console should print `"[DEFAULT]"`.
 
     <!-- SCREENSHOT: Chrome DevTools console showing the output "[DEFAULT]" after typing firebase.app().name. -->
-    ![Chrome console showing successful Firebase connection](images/placeholder_console_verify.png "Verifying Firebase connection in Chrome console")
+    ![Chrome console showing successful Firebase connection](assets/firebase_setup_7.png "Verifying Firebase connection in Chrome console")
     *Figure 7: Successful Firebase connection — the console returns "[DEFAULT]".*
 
 !!! success

@@ -141,7 +141,7 @@ If you want to run this documentation site on your own machine:
 
 ## Authors
 
-- **Jameel Mohammed** — [GitHub](https://github.com/jameeel01)
+- **Jameel Mohammed** - [GitHub](https://github.com/jameeel01)
 - **Julio Cesar Filho Arantes** - [GitHub](https://github.com/CaesarSaladd)
 
 BCIT CST — COMM 2216, Term 2, 2026

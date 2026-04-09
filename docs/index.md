@@ -8,11 +8,13 @@ In the CST program, you will use Firebase to deploy your COMP 1800 team project 
 
 If you are interested in more information about Firebase's full feature set, please visit the [official Firebase documentation](https://firebase.google.com/docs).
 
-## Is This Guide for You?
+## User Demographic
 
 This guide is written for **first-term BCIT CST students** who are building a web application using HTML, CSS, and JavaScript for COMP 1800. No prior experience with Firebase, cloud platforms, or backend development is required.
 
-We assume you can perform the following tasks without assistance:
+## Pre-requisite Knowledge
+
+You can perform the following tasks without assistance:
 
 - Open, edit, and save HTML, CSS, and JavaScript files in [VS Code](https://code.visualstudio.com/)
 - Navigate between folders in a terminal using commands such as `cd` and `ls` (macOS/Linux) or `cd` and `dir` (Windows)

@@ -6,7 +6,7 @@ This section walks you through enabling Firebase [Authentication](glossary.md#au
 
 The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `login.html` page when they visit a protected page without being signed in.
 
-!!! note
+!!! warning
     Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) 
     and [Task 2: Setting Up Cloud Firestore Database](task2_firestore_setup.md) 
     before starting this section. Your project must already have Firebase installed 

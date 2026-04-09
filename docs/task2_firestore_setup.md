@@ -2,7 +2,7 @@
 
 ## Overview
 
-This section walks you through creating a Cloud Firestore database, understanding how Firestore organizes data, adding data manually through the Firebase Console, and reading and writing data from your COMP 1800 project using JavaScript.
+This section walks you through creating a [Cloud Firestore](glossary.md#cloud-firestore) database, understanding how Firestore organizes data, adding data manually through the [Firebase Console](glossary.md#firebase-console), and reading and writing data from your COMP 1800 project using JavaScript.
 
 By the end of this page, your project will be able to store and retrieve data from a cloud database.
 
@@ -52,12 +52,12 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
 
 8. **Click** [Next].
 
-9. **Select** "Start in test mode."
+9. **Select** "Start in [test mode](glossary.md#test-mode)."
 
-    Test mode allows open read and write access for 30 days, which is suitable for development.
+    [Test mode](glossary.md#test-mode) allows open read and write access for 30 days, which is suitable for development.
 
     !!! warning
-        Test mode security rules expire after 30 days. If your database reads and writes suddenly stop working later in the term, check whether your security rules have expired by visiting [Firestore] → [Rules] in the Firebase Console.
+        Test mode [security rules](glossary.md#security-rules) expire after 30 days. If your database reads and writes suddenly stop working later in the term, check whether your security rules have expired. See [Troubleshooting](troubleshooting.md#firestore-reads-and-writes-suddenly-stopped-working) for the fix.
 
     !!! note
         The Firebase Console will display the exact expiry date for your test mode rules. Take note of this date.
@@ -75,17 +75,17 @@ Cloud Firestore is Firebase's flexible, scalable database. You will use it to st
     *Figure 5: The empty Firestore data viewer, ready for data.*
 
 !!! success
-    You have created a Cloud Firestore database. The data viewer is now visible and ready for you to add collections and documents.
+    You have created a Cloud Firestore database. The data viewer is now visible and ready for you to add [collections](glossary.md#collection) and [documents](glossary.md#document).
 
 ---
 
 ## Understanding Firestore Structure
 
-Before adding data, it is important to understand how Firestore organizes information. Firestore does not use traditional tables and rows like SQL databases. Instead, it uses **collections** and **documents**.
+Before adding data, it is important to understand how Firestore organizes information. Firestore does not use traditional tables and rows like SQL databases. Instead, it uses **[collections](glossary.md#collection)** and **[documents](glossary.md#document)**.
 
 - A **collection** is a group of documents, similar to a folder. For example, a collection called `users` would hold all user-related documents.
-- A **document** is a single record within a collection, similar to a file inside a folder. Each document contains **fields** with values. For example, a document inside `users` might have fields like `name`, `email`, and `city`.
-- Each document is identified by a unique **document ID**, which can be auto-generated or manually set.
+- A **document** is a single record within a collection, similar to a file inside a folder. Each document contains **[fields](glossary.md#field)** with values. For example, a document inside `users` might have fields like `name`, `email`, and `city`.
+- Each document is identified by a unique **[document ID](glossary.md#document-id)**, which can be auto-generated or manually set.
 
 Here is a visual example of how COMP 1800 project data might be organized:
 
@@ -126,7 +126,7 @@ Before writing JavaScript code, you will add a test document using the Firebase 
 
     The "Add a document" panel appears.
 
-4. **Click** [Auto-ID] to let Firebase generate a unique document ID automatically.
+4. **Click** [Auto-ID] to let Firebase generate a unique [document ID](glossary.md#document-id) automatically.
 
     !!! note
         Auto-generated IDs look like a random string of characters (e.g., `aB3dEf7gHi`). This is normal. You can also enter a custom ID if you prefer, but Auto-ID is recommended for most cases.
@@ -165,7 +165,7 @@ Before writing JavaScript code, you will add a test document using the Firebase 
 
 ## Reading Firestore Data from Your Project
 
-Now that there is data in your Firestore database, you will write JavaScript to retrieve and display it in the browser console.
+Now that there is data in your Firestore database, you will write JavaScript to retrieve and display it in the browser [console](glossary.md#console-browser).
 
 1. **Open** your COMP 1800 project in VS Code.
 
@@ -198,7 +198,7 @@ Now that there is data in your Firestore database, you will write JavaScript to 
     ```
 
     !!! warning
-        The `firestore_test.js` script must be loaded **after** both the Firebase SDK scripts and your `firebaseAPI_TEAMXX.js` file. If it loads before them, Firebase will not be initialized and you will see a `firebase is not defined` error.
+        The `firestore_test.js` script must be loaded **after** both the Firebase SDK scripts and your `firebaseAPI_TEAMXX.js` file. If it loads before them, Firebase will not be initialized and you will see a `firebase is not defined` error. See [Troubleshooting](troubleshooting.md#firebase-is-not-defined-error-in-the-browser-console) for help resolving this.
 
 6. **Save** both files.
 
@@ -221,11 +221,11 @@ Now that there is data in your Firestore database, you will write JavaScript to 
     ```
 
     <!-- SCREENSHOT: Chrome DevTools console showing the Firestore read output with the document ID and fields printed. -->
-    ![Console output showing Firestore data](images/placeholder_read_output.png "Firestore read output in Chrome console")
+    ![Console output showing Firestore data](assets/firestore_setup_10.png "Firestore read output in Chrome console")
     *Figure 10: Firestore data successfully read and displayed in the console.*
 
 !!! success
-    Your project can now read data from Firestore. If you see your document data printed in the console, the connection is working correctly.
+    Your project can now read data from Firestore. If you see your document data printed in the console, the connection is working correctly. If nothing appears, see [Troubleshooting](troubleshooting.md#console-shows-no-output-when-reading-from-firestore).
 
 ---
 
@@ -250,7 +250,7 @@ Next, you will add JavaScript code that writes a new document to Firestore direc
     });
     ```
 
-    This code creates a new document in the `users` collection with three fields: `name`, `email`, and `city`. Firebase automatically generates a unique document ID.
+    This code creates a new [document](glossary.md#document) in the `users` [collection](glossary.md#collection) with three [fields](glossary.md#field): `name`, `email`, and `city`. Firebase automatically generates a unique [document ID](glossary.md#document-id).
 
 3. **Save** the file.
 
@@ -273,7 +273,7 @@ Next, you will add JavaScript code that writes a new document to Firestore direc
     ```
 
     <!-- SCREENSHOT: Chrome DevTools console showing the "Document written with ID: ..." success message. -->
-    ![Console showing successful document write](assets/firestore_setup_10.png"Firestore write confirmation in console")
+    ![Console showing successful document write](assets/firestore_setup_write_output.png "Firestore write confirmation in console")
     *Figure 11: Confirmation that a new document was written to Firestore.*
 
 6. **Return** to the Firebase Console in your browser.
@@ -304,7 +304,7 @@ Before continuing to the next task, remove the test code so it does not run ever
 4. **Save** all modified files.
 
 !!! note
-    The test document you added to Firestore through the console and the document written by your JavaScript code will remain in the database. You can delete them manually from the Firestore data viewer by clicking the three-dot menu next to each document and selecting [Delete document].
+    The test document you added to Firestore through the console and the document written by your JavaScript code will remain in the database. You can delete them manually from the [Firestore data viewer](glossary.md#firestore-data-viewer) by clicking the three-dot menu next to each document and selecting [Delete document].
 
 ---
 
@@ -312,10 +312,10 @@ Before continuing to the next task, remove the test code so it does not run ever
 
 In this section, you:
 
-- Created a Cloud Firestore database in the Firebase Console
-- Learned how Firestore organizes data using collections and documents
+- Created a [Cloud Firestore](glossary.md#cloud-firestore) database in the [Firebase Console](glossary.md#firebase-console)
+- Learned how Firestore organizes data using [collections](glossary.md#collection) and [documents](glossary.md#document)
 - Added a test document manually through the Firebase Console
-- Read Firestore data from your project using JavaScript and displayed it in the browser console
+- Read Firestore data from your project using JavaScript and displayed it in the browser [console](glossary.md#console-browser)
 - Wrote a new document to Firestore from your project using JavaScript
 - Cleaned up test code
 

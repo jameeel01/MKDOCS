@@ -102,3 +102,28 @@ You will need to use the Firebase CLI tool to deploy your project directly from 
  
 ---
 
+## Building the Project with Vite
+ 
+Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the build step before every deploy.** Firebase Hosting serves the files inside `dist/`, not your raw source files.
+ 
+1. **Run** the following command in the terminal:
+
+    ```bash
+    npm run build
+    ```
+
+    Vite compiles all your JavaScript modules and writes the output to a new or updated `dist/` folder. You will see a list of generated files printed in the terminal.
+
+    ![Terminal showing Vite build output with file list](assets/firebase_deployment_2.png "Vite build output")
+
+    *Figure 3: A successful Vite build listing the files written to dist/.*
+
+    !!! warning
+        If the build fails with an error, do not proceed to deploy. Fix the errors shown in the terminal output first. Deploying a broken build will make your live site inaccessible or broken.
+
+2. **Confirm** that a `dist/` folder now exists in your project root and contains an `index.html` file.
+ 
+!!! success
+    Your project has been compiled into the `dist/` folder and is ready to deploy.
+ 
+---

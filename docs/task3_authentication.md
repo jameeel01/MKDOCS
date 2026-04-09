@@ -84,4 +84,40 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
  
 3. **Save** `src/firebaseConfig.js`.
  
+---
+
+## Creating src/authentication.js
+ 
+`src/authentication.js` exports a single reusable function, `requireLogin()`, that any page can call to redirect unauthenticated visitors to `login.html`.
+ 
+1. **Create** the file `src/authentication.js`.
+ 
+2. **Add** the following code to the `src/authentication.js` file and save the file:
+
+    ```javascript
+    // src/authentication.js
+    import { onAuthStateChanged } from "firebase/auth";
+    import { auth } from "./firebaseConfig.js";
+
+    /**
+     * Redirects the user to login.html if they are not signed in.
+     * Import and call this at the top of any protected page script.
+     */
+    export function requireLogin() {
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "/login.html";
+            }
+        });
+    }
+    ```
+
+3. To protect any page, import and call `requireLogin()` at the top of that page's script. For example, in `src/main.js`:
+
+    ```javascript
+    import { requireLogin } from "./authentication.js";
+    requireLogin();
+    ```
+
+
 

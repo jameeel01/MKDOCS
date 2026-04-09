@@ -75,6 +75,6 @@ Conditions defined in the [Firebase Console](#firebase-console) that control who
 
 A Firestore security configuration that allows any user to read and write data for 30 days from the date the database was created. Intended for development and testing only — not for production use. After 30 days, the [security rules](#security-rules) expire and all database operations will fail with a `PERMISSION_DENIED` error until you update them.
 
-### Vite
+### Vite ([Offical Documentation](https://vite.dev/guide/))
 
 A fast build tool and development server for modern JavaScript projects. In COMP 1800, Vite bundles your JavaScript modules (including Firebase `import` statements) and serves your project locally via `npm run dev`. Before deploying to [Firebase Hosting](#firebase-hosting), you must run `npm run build` to compile everything into a `dist/` folder. See [Deploying Your Project](task4_deploy.md) for details.

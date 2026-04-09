@@ -21,7 +21,7 @@ We assume you can perform the following tasks without assistance:
 
 ## By the End of This Guide, You Will Be Able To
 
-1. [Create and configure a Firebase project in the Firebase Console](task1_firebase_setup.md)
+1. [Set up a Firebase project in the Firebase Console](task1_firebase_setup.md)
 2. [Set up Cloud Firestore as a database for your project](task2_firestore_setup.md)
 3. [Set up Firebase Authentication for user login](task3_authentication.md)
 4. [Deploy your COMP 1800 project to Firebase Hosting as a live website](task4_deploy.md)
@@ -33,11 +33,12 @@ Before starting these instructions, make sure you have the following installed a
 - A **Google account** (any Gmail account will work)
 - **[VS Code](https://code.visualstudio.com/)** installed on your computer — this is the code editor used throughout these instructions
 - **[Node.js](https://nodejs.org/)** (version 16 or higher) installed on your computer — required by [Vite](glossary.md#vite) and the Firebase CLI
-- A working **COMP 1800 Vite project** with a `package.json`, a `src/` folder, and at least an `index.html` file — your project must be runnable with `npm run dev`
+- A working **COMP 1800 [Vite](glossary.md#vite) project** with a `package.json`, a `src/` folder, and at least an `index.html` file — your project must be runnable with `npm run dev`
 - **[Google Chrome](https://www.google.com/chrome/)** browser — recommended because these instructions reference Chrome's developer tools for testing
 
 !!! note
-    To check if Node.js is installed, open your terminal and type `node -v`. If a version number appears (e.g., `v18.17.0`), you are ready to proceed. If not, download and install Node.js from the link above before continuing.
+    To check if Node.js is installed, open your terminal and type `node -v`. If a version number appears (e.g., `v18.17.0`), you are ready to proceed. If not, download and install Node.js from the link above before continuing. We assume your instructor has provided you with instructions to set up and install node.js and vite. 
+    
 
 ## Typographical Conventions
 

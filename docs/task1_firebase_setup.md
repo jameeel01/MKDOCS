@@ -21,7 +21,8 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
 2. **Sign in** with your Google account.
 
-    At this point, the Firebase Console dashboard appears. If this is your first time, the page may be mostly empty.
+    !!! note
+        The Firebase Console dashboard should appear. If this is your first time, the page may be mostly empty.
 
     <!-- SCREENSHOT: Firebase Console dashboard showing the main page with "Add project" button visible. Crop to show just the center of the page. -->
     ![Firebase Console dashboard showing the Add project button](assets/firebase_setup_1.png "Firebase Console dashboard")
@@ -57,7 +58,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
 8. **Click** [Continue] when the "Your new project is ready" message appears.
 
-    At this point, you are taken to your Firebase project dashboard.
+    You should now see your Firebase project dashboard.
 
 !!! success
     You have successfully created a Firebase project. The project dashboard should now be visible with your project name at the top left.
@@ -89,7 +90,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 
 4. **Click** [Register app].
 
-    At this point, Firebase displays a code block titled "Add Firebase SDK." This contains your unique Firebase configuration.
+    Firebase now displays a code block titled "Add Firebase SDK." This contains your unique Firebase configuration.
 
     <!-- SCREENSHOT: The Firebase SDK configuration code block that appears after registering. Make sure the full code snippet is visible. -->
     ![Firebase SDK configuration code block](assets/firebase_setup_6.png "Firebase configuration keys")
@@ -210,7 +211,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
 
         **Press** ++cmd+option+j++.
 
-    At this point, the console should print `Firebase connected: [DEFAULT]`. This confirms Firebase has been initialized successfully.
+    The console should print `Firebase connected: [DEFAULT]`. This confirms Firebase has been initialized successfully.
 
     <!-- SCREENSHOT: Chrome DevTools console showing "Firebase connected: [DEFAULT]". -->
     ![Chrome console showing successful Firebase connection](assets/firebase_setup_8.png "Verifying Firebase connection in Chrome console")

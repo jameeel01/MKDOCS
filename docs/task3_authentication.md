@@ -84,4 +84,192 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
  
 3. **Save** `src/firebaseConfig.js`.
  
+---
+
+## Creating src/authentication.js
+ 
+`src/authentication.js` exports a single reusable function, `requireLogin()`, that any page can call to redirect unauthenticated visitors to `login.html`.
+ 
+1. **Create** the file `src/authentication.js`.
+ 
+2. **Add** the following code to the `src/authentication.js` file and save the file:
+
+    ```javascript
+    // src/authentication.js
+    import { onAuthStateChanged } from "firebase/auth";
+    import { auth } from "./firebaseConfig.js";
+
+    /**
+     * Redirects the user to login.html if they are not signed in.
+     * Import and call this at the top of any protected page script.
+     */
+    export function requireLogin() {
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = "/login.html";
+            }
+        });
+    }
+    ```
+
+3. To protect any page, import and call `requireLogin()` at the top of that page's script. For example, in `src/main.js`:
+
+    ```javascript
+    import { requireLogin } from "./authentication.js";
+    requireLogin();
+    ```
+
+!!! note
+    Do **not** add `requireLogin()` to the script loaded by `login.html` itself.
+ 
+---
+
+## Creating src/login.js
+ 
+`src/login.js` handles both the sign-up and login form submissions and controls which form is visible on `login.html`.
+ 
+1. **Create** the file `src/login.js`.
+ 
+2. **Add** the following code:
+ 
+    ```javascript
+    // src/login.js
+    import {
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
+    } from "firebase/auth";
+    import { doc, setDoc } from "firebase/firestore";
+    import { auth, db } from "./firebaseConfig.js";
+ 
+    // --- Toggle between login and sign-up views ---
+    const loginView  = document.getElementById("loginView");
+    const signupView = document.getElementById("signupView");
+ 
+    document.getElementById("toSignup").addEventListener("click", (e) => {
+        e.preventDefault();
+        loginView.classList.add("d-none");
+        signupView.classList.remove("d-none");
+    });
+ 
+    document.getElementById("toLogin").addEventListener("click", (e) => {
+        e.preventDefault();
+        signupView.classList.add("d-none");
+        loginView.classList.remove("d-none");
+    });
+ 
+    // --- Sign-up form ---
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+ 
+        const username = document.getElementById("signupName").value.trim();
+        const email    = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value;
+        const confirm  = document.getElementById("signupConfirmPassword").value;
+ 
+        if (password !== confirm) {
+            alert("Passwords do not match.");
+            return;
+        }
+ 
+        try {
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+ 
+            // Store the username in the Firestore users collection
+            await setDoc(doc(db, "users", credential.user.uid), {
+                username: username,
+                email: email
+            });
+ 
+            window.location.href = "/index.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+ 
+    // --- Login form ---
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+ 
+        const email    = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+ 
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "/index.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+    ```
+ 
+3. **Save** `src/login.js`.
+ 
+---
+
+## Adding Sign-Out to a Page
+ 
+To let users sign out, add a button and import the Firebase `signOut` function into that page's script.
+ 
+1. **Add** a sign-out button to the chosen HTML page:
+ 
+    ```html
+    <button id="signoutBtn">Sign Out</button>
+    ```
+ 
+2. **Open** that page's script file and **add** the following:
+ 
+    ```javascript
+    import { signOut } from "firebase/auth";
+    import { auth } from "./firebaseConfig.js";
+ 
+    document.getElementById("signoutBtn").addEventListener("click", () => {
+        signOut(auth)
+            .then(() => { window.location.href = "/Login.html"; })
+            .catch((error) => { console.error("Sign-out error:", error); });
+    });
+    ```
+ 
+3. **Save** the file.
+ 
+---
+
+## Verifying the authentication is working
+ 
+1. **Run** the Vite development in the command line:
+ 
+    ```
+    npm run dev
+    ```
+ 
+   Vite should print a local URL such as `http://localhost:5173`.
+ 
+2. **Open** `http://localhost:5173/Login.html` in Google Chrome.
+ 
+3. **Click** the [Sign up] link.
+ 
+    The login form hides and the sign-up form appears.
+ 
+    ![Login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on Login.html")
+    *Figure 3: The sign-up view of Login.html.*
+ 
+4. **Enter** a username, a valid email address, and a password of at least six characters, then **click** [Sign Up!].
+ 
+    The browser should redirect to to `index.html`.
+ 
+5. **Open** the Firebase Console, **navigate** to [Authentication] → [Users], and **confirm** your new test user appears in the list.
+ 
+    ![Firebase Authentication Users tab showing the new test user](assets/firebase_authentication_4.png "New user in Firebase Authentication")
+    *Figure 4: The new user visible in the Firebase Console.*
+ 
+6. **Click** [Sign Out], **return** to `login.html`, **enter** your email and password, and **click** [Login].
+ 
+    Once the user is logged in, the browser should redirect back to `index.html`.
+ 
+!!! success
+    Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
+---
+
+
+ 
+
 

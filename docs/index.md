@@ -21,7 +21,7 @@ We assume you can perform the following tasks without assistance:
 
 ## By the End of This Guide, You Will Be Able To
 
-1. [Create and configure a Firebase project in the Firebase Console](task1_firebase_setup.md)
+1. [Set up a Firebase project in the Firebase Console](task1_firebase_setup.md)
 2. [Set up Cloud Firestore as a database for your project](task2_firestore_setup.md)
 3. [Set up Firebase Authentication for user login](task3_authentication.md)
 4. [Deploy your COMP 1800 project to Firebase Hosting as a live website](task4_deploy.md)
@@ -38,6 +38,9 @@ Before starting these instructions, make sure you have the following installed a
 
 !!! note
     To check if Node.js is installed, open your terminal and type `node -v`. If a version number appears (e.g., `v18.17.0`), you are ready to proceed. If not, download and install Node.js from the link above before continuing.
+
+!!! note
+    If you need help installing Vite or don't know how to, you can visot
 
 ## Typographical Conventions
 

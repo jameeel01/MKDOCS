@@ -137,7 +137,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
     npm downloads the Firebase SDK and adds it to your `node_modules/` folder. You will see a confirmation message when the installation is complete.
 
     <!-- SCREENSHOT: Terminal showing successful npm install firebase output. -->
-    ![Terminal showing npm install firebase output](assets/firebase_setup_npm_install.png "npm install firebase output")
+    ![Terminal showing npm install firebase output](assets/firebase_setup_7.png "npm install firebase output")
     *Figure 7: Successful Firebase npm installation.*
 
 ### Creating the Firebase Configuration File
@@ -213,7 +213,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
     At this point, the console should print `Firebase connected: [DEFAULT]`. This confirms Firebase has been initialized successfully.
 
     <!-- SCREENSHOT: Chrome DevTools console showing "Firebase connected: [DEFAULT]". -->
-    ![Chrome console showing successful Firebase connection](assets/firebase_setup_7.png "Verifying Firebase connection in Chrome console")
+    ![Chrome console showing successful Firebase connection](assets/firebase_setup_8.png "Verifying Firebase connection in Chrome console")
     *Figure 8: Successful Firebase connection — the console prints "[DEFAULT]".*
 
 13. **Remove** the two temporary lines you added to `src/main.js` (the `import` and `console.log`).

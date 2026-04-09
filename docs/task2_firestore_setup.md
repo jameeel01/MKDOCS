@@ -6,7 +6,7 @@ This section walks you through creating a [Cloud Firestore](glossary.md#cloud-fi
 
 By the end of this page, your project will be able to store and retrieve data from a cloud database.
 
-!!! note
+!!! warning
     Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) before starting this section. Your project must already be connected to Firebase.
 
 ---
@@ -225,7 +225,7 @@ Now that there is data in your Firestore database, you will write JavaScript to 
 
         **Press** ++cmd+option+j++.
 
-    At this point, the console should display the document ID and data you added earlier. The output will look similar to:
+    The console should display the document ID and data you added earlier. The output will look similar to:
 
     ```
     VvBEUU2ZnbdUXI7FlG7t  =>  {name: "Test User", email: "testuser@bcit.ca", city: "Vancouver"}

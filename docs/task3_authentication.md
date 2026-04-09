@@ -22,4 +22,30 @@ Before writing any code, you must enable the Email/Password sign-in method insid
 
 1. **Open** the [Firebase Console](https://console.firebase.google.com) and **click** on your project.
 
-2. **Click** [Build] in the left sidebar, then **click** [Authentication].
+2. **Click** [Search] in the left sidebar, then search for [Authentication].
+ 
+3. **Click** [Get started].
+ 
+4. **Click** the [Sign-in method] tab.
+ 
+5. **Click** [Email/Password] under the "Native providers" section.
+ 
+    ![Sign-in method tab showing the Email/Password provider](assets/firebase_authentication_1.png "Email/Password sign-in provider")
+    *Figure 1: The Email/Password provider in the Sign-in method tab.*
+
+6. **Toggle** on the first switch labelled "Email/Password".
+ 
+    !!! note
+        Do **not** enable the second toggle labelled "Email link (passwordless sign-in)." Your COMP 1800 project will use standard password-based login only.
+ 
+    ![Email/Password configuration panel with the top toggle enabled](assets/firebase_authentication_2.png "Enabling Email/Password authentication")
+    *Figure 2: Enabling the Email/Password sign-in method.*
+ 
+7. **Click** [Save].
+ 
+    At this point, "Email/Password" appears as an **Enabled** provider in the list.
+ 
+!!! success
+    Email/Password authentication is now enabled for your Firebase project.
+ 
+---

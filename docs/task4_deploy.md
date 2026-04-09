@@ -36,7 +36,7 @@ You will need to use the Firebase CLI tool to deploy your project directly from 
  
     Npm downloads and installs the Firebase CLI globally. This may take up to one minute.
  
-    !!! note
+    !!! note "'-g' is a global command"
         The command `-g` installs the CLI globally so the `firebase` command is available in any project folder. You only need to run this once per computer.
  
 3. **Verify** the installation by running:
@@ -70,7 +70,7 @@ Before you can initialize or deploy, you must authenticate the Firebase CLI with
 
     The terminal displays a success message confirming you are logged in.
 
-    !!! note
+    !!! note "Login is only required once"
         You only need to log in once per computer. The CLI remembers your credentials for future sessions. If you need to switch accounts later, **run** `firebase logout` followed by `firebase login`.
 
 !!! success

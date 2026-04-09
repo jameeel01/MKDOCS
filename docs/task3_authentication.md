@@ -49,3 +49,39 @@ Before writing any code, you must enable the Email/Password sign-in method insid
     Email/Password authentication is now enabled for your Firebase project.
  
 ---
+
+## Configuring src/firebaseConfig.js
+ 
+Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and exports the `auth` and `db` instances. Every other module imports from this file rather than calling `initializeApp` again.
+ 
+1. **Open** `src/firebaseConfig.js` in VS Code.
+ 
+2. **Replace** its contents with the following, pasting your own project values in place of the placeholders:
+ 
+    ```javascript
+    // src/firebaseConfig.js
+    import { initializeApp } from "firebase/app";
+    import { getFirestore } from "firebase/firestore";
+    import { getAuth } from "firebase/auth";
+ 
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+ 
+    const app = initializeApp(firebaseConfig);
+ 
+    export const db   = getFirestore(app);
+    export const auth = getAuth(app);
+    ```
+ 
+    !!! warning
+        Replace every `YOUR_...` placeholder with the actual values from your Firebase project. Find these in the Firebase Console under [Project Settings] → [Your apps] → [SDK setup and configuration].
+ 
+3. **Save** `src/firebaseConfig.js`.
+ 
+

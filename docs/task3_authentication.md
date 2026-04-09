@@ -233,7 +233,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
 ---
 
-## Verifying authentication is working
+## Verifying the authentication is working
  
 1. **Run** the Vite development in the command line:
  
@@ -252,7 +252,22 @@ To let users sign out, add a button and import the Firebase `signOut` function i
     ![Login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on Login.html")
     *Figure 3: The sign-up view of Login.html.*
  
-4. **Enter** a username, a valid email addres
+4. **Enter** a username, a valid email address, and a password of at least six characters, then **click** [Sign Up!].
+ 
+    The browser should redirect to to `index.html`.
+ 
+5. **Open** the Firebase Console, **navigate** to [Authentication] → [Users], and **confirm** your new test user appears in the list.
+ 
+    ![Firebase Authentication Users tab showing the new test user](assets/firebase_authentication_4.png "New user in Firebase Authentication")
+    *Figure 4: The new user visible in the Firebase Console.*
+ 
+6. **Click** [Sign Out], **return** to `login.html`, **enter** your email and password, and **click** [Login].
+ 
+    Once the user is logged in, the browser should redirect back to `index.html`.
+ 
+!!! success
+    Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
+---
 
 
  

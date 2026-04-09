@@ -2,7 +2,7 @@
 
 ## Overview
 
-This section walks you through creating a Firebase project, registering your web app, and connecting Firebase to your COMP 1800 project files. By the end of this page, your local project will be linked to Firebase and ready for additional services like Firestore and Authentication.
+This section walks you through creating a [Firebase](glossary.md#firebase) project, registering your web app, and connecting Firebase to your COMP 1800 project files. By the end of this page, your local project will be linked to Firebase and ready for additional services like [Cloud Firestore](glossary.md#cloud-firestore) and [Authentication](glossary.md#authentication).
 
 !!! note
     This process only needs to be done once per project. Once Firebase is connected, all team members can use the same project by sharing the configuration file.
@@ -66,7 +66,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
 ## Registering a Web App
 
-Now that your Firebase project exists, you need to register your COMP 1800 project as a **web app** within Firebase. This generates the configuration keys that connect your code to Firebase services.
+Now that your Firebase project exists, you need to register your COMP 1800 project as a **web app** within Firebase. This generates the [API key](glossary.md#api-key) and configuration values that connect your code to Firebase services.
 
 1. From the project dashboard, **click** the **web icon** ( `</>` ) in the center of the page under "Get started by adding Firebase to your app."
 
@@ -81,7 +81,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 3. **Check** the box labelled "Also set up Firebase Hosting for this app."
 
     !!! note
-        Checking this box now saves you a step later when you deploy your project in Task 4.
+        Checking this box now saves you a step later when you deploy your project in Task 4. [Firebase Hosting](glossary.md#firebase-hosting) is the service that makes your project accessible as a live website.
 
     <!-- SCREENSHOT: The "Add Firebase to your web app" panel showing the nickname field and the Firebase Hosting checkbox checked. -->
     ![Register app panel with hosting checkbox checked](assets/firebase_setup_5.png "Register web app panel")
@@ -98,7 +98,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 5. **Copy** the entire code block shown on your screen. You will need this in the next section.
 
     !!! warning
-        Do not share your Firebase configuration keys in a public GitHub repository without proper `.gitignore` protection. While these keys are not passwords, exposing them without security rules can allow unauthorized access to your Firebase services.
+        Do not share your Firebase configuration keys in a public GitHub repository without proper `.gitignore` protection. While these keys are not passwords, exposing them without [security rules](glossary.md#security-rules) can allow unauthorized access to your Firebase services.
 
 6. **Click** [Continue to console].
 
@@ -109,7 +109,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 
 ## Adding Firebase to Your Project
 
-With your configuration keys ready, you can now connect Firebase to your actual COMP 1800 project files.
+With your configuration keys ready, you can now connect Firebase to your actual COMP 1800 project files. This involves creating a configuration file, linking the [Firebase SDK](glossary.md#firebase-sdk-software-development-kit) scripts in your HTML, and verifying the connection.
 
 ### Adding the Firebase Configuration File
 
@@ -138,7 +138,7 @@ With your configuration keys ready, you can now connect Firebase to your actual 
     ```
 
     !!! warning
-        Make sure you replace every `YOUR_...` placeholder with the actual values from your Firebase configuration. If any value is missing or incorrect, Firebase will not connect.
+        Make sure you replace every `YOUR_...` placeholder with the actual values from your Firebase configuration. If any value is missing or incorrect, Firebase will not connect. See [Troubleshooting](troubleshooting.md) if you encounter a `No Firebase App '[DEFAULT]' has been created` error.
 
 4. **Save** the file.
 
@@ -160,7 +160,7 @@ With your configuration keys ready, you can now connect Firebase to your actual 
     ```
 
     !!! note
-        The version `8.10.1` is the latest release of the Firebase v8 SDK, which uses simple `<script>` tags. COMP 1800 projects use v8 because it does not require a module bundler. Do not use the v9+ modular SDK unless your instructor specifies otherwise.
+        The version `8.10.1` is the latest release of the Firebase v8 [SDK](glossary.md#firebase-sdk-software-development-kit), which uses simple `<script>` tags loaded from a [CDN](glossary.md#cdn-content-delivery-network). COMP 1800 projects use v8 because it does not require a module bundler. Do not use the v9+ modular SDK unless your instructor specifies otherwise.
 
 7. **Add** a `<script>` tag linking to your Firebase configuration file, **after** the Firebase SDK scripts:
 
@@ -196,7 +196,7 @@ With your configuration keys ready, you can now connect Firebase to your actual 
 
 9. **Open** `index.html` in Google Chrome by double-clicking the file, or by right-clicking and selecting [Open with] → [Google Chrome].
 
-10. **Open** the browser developer console:
+10. **Open** the browser [developer console](glossary.md#console-browser):
 
     === "Windows"
 
@@ -227,10 +227,10 @@ With your configuration keys ready, you can now connect Firebase to your actual 
 
 In this section, you:
 
-- Created a new Firebase project in the Firebase Console
+- Created a new Firebase project in the [Firebase Console](glossary.md#firebase-console)
 - Registered your COMP 1800 project as a Firebase web app
-- Added the Firebase SDK scripts and configuration to your `index.html`
-- Verified the connection using the browser console
+- Added the [Firebase SDK](glossary.md#firebase-sdk-software-development-kit) scripts and configuration to your `index.html`
+- Verified the connection using the browser [developer console](glossary.md#console-browser)
 
 If the console printed `"[DEFAULT]"` in the verification step, everything is working correctly. If you see errors instead, refer to the [Troubleshooting](troubleshooting.md) page.
 

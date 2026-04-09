@@ -43,7 +43,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
  
 7. **Click** [Save].
  
-    At this point, "Email/Password" appears as an **Enabled** provider in the list.
+    "Email/Password" should appear as an **Enabled** provider in the list.
  
 !!! success
     Email/Password authentication is now enabled for your Firebase project.
@@ -269,7 +269,21 @@ To let users sign out, add a button and import the Firebase `signOut` function i
     Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
 ---
 
-
+---
+ 
+## Conclusion
+ 
+In this section, you:
+ 
+- Enabled Email/Password authentication in the Firebase Console
+- Updated `src/firebaseConfig.js` to export `auth` and `db`
+- Created `src/authentication.js` with a reusable `requireLogin()` function
+- Created `src/login.js` to handle sign-up and login form submissions
+- Built a single `login.html` containing both the login and sign-up forms
+ 
+If users can sign up, appear in the Firebase Console Users list, log in, and sign out, your setup is complete. If you encounter errors, refer to the [Troubleshooting](troubleshooting.md) page.
+ 
+**Next:** [Deploying Your Project](task4_deploy.md)
  
 
 

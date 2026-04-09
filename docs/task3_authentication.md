@@ -119,5 +119,92 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
     requireLogin();
     ```
 
+!!! note
+    Do **not** add `requireLogin()` to the script loaded by `login.html` itself.
+ 
+---
+
+## Creating src/login.js
+ 
+`src/login.js` handles both the sign-up and login form submissions and controls which form is visible on `login.html`.
+ 
+1. **Create** the file `src/login.js`.
+ 
+2. **Add** the following code:
+ 
+    ```javascript
+    // src/login.js
+    import {
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
+    } from "firebase/auth";
+    import { doc, setDoc } from "firebase/firestore";
+    import { auth, db } from "./firebaseConfig.js";
+ 
+    // --- Toggle between login and sign-up views ---
+    const loginView  = document.getElementById("loginView");
+    const signupView = document.getElementById("signupView");
+ 
+    document.getElementById("toSignup").addEventListener("click", (e) => {
+        e.preventDefault();
+        loginView.classList.add("d-none");
+        signupView.classList.remove("d-none");
+    });
+ 
+    document.getElementById("toLogin").addEventListener("click", (e) => {
+        e.preventDefault();
+        signupView.classList.add("d-none");
+        loginView.classList.remove("d-none");
+    });
+ 
+    // --- Sign-up form ---
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+ 
+        const username = document.getElementById("signupName").value.trim();
+        const email    = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value;
+        const confirm  = document.getElementById("signupConfirmPassword").value;
+ 
+        if (password !== confirm) {
+            alert("Passwords do not match.");
+            return;
+        }
+ 
+        try {
+            const credential = await createUserWithEmailAndPassword(auth, email, password);
+ 
+            // Store the username in the Firestore users collection
+            await setDoc(doc(db, "users", credential.user.uid), {
+                username: username,
+                email: email
+            });
+ 
+            window.location.href = "/index.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+ 
+    // --- Login form ---
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+ 
+        const email    = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+ 
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            window.location.href = "/index.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+    ```
+ 
+3. **Save** `src/login.js`.
+ 
+---
+
 
 

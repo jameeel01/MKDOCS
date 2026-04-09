@@ -23,8 +23,8 @@ We assume you can perform the following tasks without assistance:
 
 1. [Create and configure a Firebase project in the Firebase Console](task1_firebase_setup.md)
 2. [Set up Cloud Firestore as a database for your project](task2_firestore_setup.md)
-3. Set up Firebase Authentication for user login *(coming soon)*
-4. Deploy your COMP 1800 project to Firebase Hosting as a live website *(coming soon)*
+3. [Set up Firebase Authentication for user login](task3_authentication.md)
+4. [Deploy your COMP 1800 project to Firebase Hosting as a live website](task4_deploy.md)
 
 ## Prerequisites
 
@@ -32,8 +32,8 @@ Before starting these instructions, make sure you have the following installed a
 
 - A **Google account** (any Gmail account will work)
 - **[VS Code](https://code.visualstudio.com/)** installed on your computer — this is the code editor used throughout these instructions
-- **[Node.js](https://nodejs.org/)** (version 16 or higher) installed on your computer — required by the Firebase CLI for deployment in Task 4
-- A working **COMP 1800 project** folder containing at least an `index.html` file
+- **[Node.js](https://nodejs.org/)** (version 16 or higher) installed on your computer — required by [Vite](glossary.md#vite) and the Firebase CLI
+- A working **COMP 1800 Vite project** with a `package.json`, a `src/` folder, and at least an `index.html` file — your project must be runnable with `npm run dev`
 - **[Google Chrome](https://www.google.com/chrome/)** browser — recommended because these instructions reference Chrome's developer tools for testing
 
 !!! note
@@ -46,7 +46,7 @@ These instructions use the following typographic conventions:
 | Convention | Examples |
 | --- | --- |
 | **Bold text** indicates commands or actions you need to perform. | **Click**, **Enter**, **Type**, **Open**, **Select**, **Navigate** |
-| `Code formatting` indicates terminal commands, file names, or code you need to type. | `npm install`, `index.html`, `firebase.firestore()` |
+| `Code formatting` indicates terminal commands, file names, or code you need to type. | `npm install`, `firebaseConfig.js`, `getFirestore()` |
 | [Square brackets] indicate buttons, menus, or UI elements on screen. | [Add project], [Continue], [Create database] |
 | [Menu] → [Submenu] indicates a sequence of clicks through menus or navigation. | [Build] → [Firestore Database] |
 

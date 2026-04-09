@@ -2,18 +2,18 @@
 
 ## Overview
 
-This section walks you through enabling Firebase Authentication in the Firebase Console, creating the `src/firebaseConfig.js`, `src/authentication.js`, and `src/login.js` module files, and building a single `Login.html` page with toggling login and sign-up views.
+This section walks you through enabling Firebase [Authentication](glossary.md#authentication) in the [Firebase Console](glossary.md#firebase-console), creating the `src/firebaseConfig.js`, `src/authentication.js`, and `src/login.js` module files, and building a single `login.html` page with toggling login and sign-up views.
 
-The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `Login.html` page when they visit a protected page without being signed in.
+The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `login.html` page when they visit a protected page without being signed in.
 
 !!! note
-    Make sure you have completed [Task 1: Initial Firebase Setup](task1_firebase_setup.md) 
-    and [Task 2: Setting Up Cloud Firestore](task2_firestore_setup.md) 
+    Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) 
+    and [Task 2: Setting Up Cloud Firestore Database](task2_firestore_setup.md) 
     before starting this section. Your project must already have Firebase installed 
     as a Node package and have a working `src/firebaseConfig.js` skeleton.
 
 !!! note
-    Your COMP 1800 project will use the **Firebase v9 modular SDK** bundled through Vite, 
+    Your COMP 1800 project uses the **Firebase v9 modular SDK** bundled through [Vite](glossary.md#vite). All Firebase functions are imported using ES module `import` statements rather than loaded via `<script>` tags.
 ---
 
 ## Enabling Email/Password Authentication
@@ -224,7 +224,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
     document.getElementById("signoutBtn").addEventListener("click", () => {
         signOut(auth)
-            .then(() => { window.location.href = "/Login.html"; })
+            .then(() => { window.location.href = "/login.html"; })
             .catch((error) => { console.error("Sign-out error:", error); });
     });
     ```
@@ -243,18 +243,18 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
    Vite should print a local URL such as `http://localhost:5173`.
  
-2. **Open** `http://localhost:5173/Login.html` in Google Chrome.
+2. **Open** `http://localhost:5173/login.html` in Google Chrome.
  
 3. **Click** the [Sign up] link.
  
     The login form hides and the sign-up form appears.
  
-    ![Login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on Login.html")
-    *Figure 3: The sign-up view of Login.html.*
+    ![login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on login.html")
+    *Figure 3: The sign-up view of login.html.*
  
 4. **Enter** a username, a valid email address, and a password of at least six characters, then **click** [Sign Up!].
  
-    The browser should redirect to to `index.html`.
+    The browser should redirect to `index.html`.
  
 5. **Open** the Firebase Console, **navigate** to [Authentication] → [Users], and **confirm** your new test user appears in the list.
  
@@ -267,7 +267,6 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
 !!! success
     Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
----
 
 ---
  
@@ -284,6 +283,3 @@ In this section, you:
 If users can sign up, appear in the Firebase Console Users list, log in, and sign out, your setup is complete. If you encounter errors, refer to the [Troubleshooting](troubleshooting.md) page.
  
 **Next:** [Deploying Your Project](task4_deploy.md)
- 
-
-

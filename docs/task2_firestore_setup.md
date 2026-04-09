@@ -1,4 +1,4 @@
-# Setting up Firestore Database
+# Setting Up Cloud Firestore Database
 
 ## Overview
 
@@ -7,7 +7,7 @@ This section walks you through creating a [Cloud Firestore](glossary.md#cloud-fi
 By the end of this page, your project will be able to store and retrieve data from a cloud database.
 
 !!! note
-    Make sure you have completed [Task 1: Initial Firebase Setup](task1_firebase_setup.md) before starting this section. Your project must already be connected to Firebase.
+    Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) before starting this section. Your project must already be connected to Firebase.
 
 ---
 
@@ -169,42 +169,50 @@ Now that there is data in your Firestore database, you will write JavaScript to 
 
 1. **Open** your COMP 1800 project in VS Code.
 
-2. **Create** a new file in your `scripts/` folder and **name** it `firestore_test.js`.
+2. **Create** a new file at `src/firestoreTest.js`.
 
-3. **Add** the following code to `firestore_test.js`:
+3. **Add** the following code to `src/firestoreTest.js`:
 
     ```javascript
-    // Initialize Firestore
-    const db = firebase.firestore();
+    // src/firestoreTest.js
+    import { collection, getDocs } from "firebase/firestore";
+    import { db } from "./firebaseConfig.js";
 
     // Read all documents from the "users" collection
-    db.collection("users").get().then((querySnapshot) => {
+    async function readUsers() {
+        const querySnapshot = await getDocs(collection(db, "users"));
         querySnapshot.forEach((doc) => {
             console.log(doc.id, " => ", doc.data());
         });
-    }).catch((error) => {
-        console.error("Error reading documents: ", error);
-    });
+    }
+
+    readUsers();
     ```
 
-    This code connects to Firestore, fetches every document in the `users` collection, and prints each document's ID and data to the browser console.
+    This code imports the Firestore functions from the Firebase v9 SDK, connects to your database via the `db` instance from `firebaseConfig.js`, and prints each document's ID and data to the browser console.
 
-4. **Open** `index.html` in VS Code.
+4. **Open** `src/main.js` in VS Code.
 
-5. **Add** a `<script>` tag linking to your new test file. Place it **after** your Firebase configuration script and **before** the closing `</body>` tag:
+5. **Add** the following import at the top of the file:
 
-    ```html
-    <script src="./scripts/firestore_test.js"></script>
+    ```javascript
+    import "./firestoreTest.js";
     ```
 
     !!! warning
-        The `firestore_test.js` script must be loaded **after** both the Firebase SDK scripts and your `firebaseAPI_TEAMXX.js` file. If it loads before them, Firebase will not be initialized and you will see a `firebase is not defined` error. See [Troubleshooting](troubleshooting.md#firebase-is-not-defined-error-in-the-browser-console) for help resolving this.
+        The `firestoreTest.js` import must appear **after** any imports from `firebaseConfig.js`. If `firebaseConfig.js` has not been loaded yet, you will see an initialization error. See [Troubleshooting](troubleshooting.md#firebase-initialization-errors-in-vite) for help resolving this.
 
 6. **Save** both files.
 
-7. **Open** `index.html` in Google Chrome.
+7. **Start** the Vite development server (if not already running):
 
-8. **Open** the browser developer console:
+    ```bash
+    npm run dev
+    ```
+
+8. **Open** the URL printed by Vite (e.g., `http://localhost:5173`) in Google Chrome.
+
+9. **Open** the browser [developer console](glossary.md#console-browser):
 
     === "Windows"
 
@@ -214,7 +222,7 @@ Now that there is data in your Firestore database, you will write JavaScript to 
 
         **Press** ++cmd+option+j++.
 
-    At this point, the console should display the document ID and data you added earlier. It will look similar to:
+    At this point, the console should display the document ID and data you added earlier. The output will look similar to:
 
     ```
     aB3dEf7gHi  =>  {name: "Test User", email: "testuser@bcit.ca", city: "Vancouver"}
@@ -233,30 +241,48 @@ Now that there is data in your Firestore database, you will write JavaScript to 
 
 Next, you will add JavaScript code that writes a new document to Firestore directly from your project.
 
-1. **Open** `firestore_test.js` in VS Code.
+1. **Open** `src/firestoreTest.js` in VS Code.
 
-2. **Add** the following code **below** the existing read code:
+2. **Replace** the entire contents with the following code, which includes both reading and writing:
 
     ```javascript
+    // src/firestoreTest.js
+    import { collection, getDocs, addDoc } from "firebase/firestore";
+    import { db } from "./firebaseConfig.js";
+
+    // Read all documents from the "users" collection
+    async function readUsers() {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+        });
+    }
+
     // Write a new document to the "users" collection
-    db.collection("users").add({
-        name: "Jane Doe",
-        email: "janedoe@bcit.ca",
-        city: "Surrey"
-    }).then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    }).catch((error) => {
-        console.error("Error adding document: ", error);
-    });
+    async function addUser() {
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                name: "Jane Doe",
+                email: "janedoe@bcit.ca",
+                city: "Surrey"
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+    }
+
+    readUsers();
+    addUser();
     ```
 
-    This code creates a new [document](glossary.md#document) in the `users` [collection](glossary.md#collection) with three [fields](glossary.md#field): `name`, `email`, and `city`. Firebase automatically generates a unique [document ID](glossary.md#document-id).
+    This code uses the v9 modular function `addDoc` to create a new [document](glossary.md#document) in the `users` [collection](glossary.md#collection) with three [fields](glossary.md#field): `name`, `email`, and `city`. Firebase automatically generates a unique [document ID](glossary.md#document-id).
 
 3. **Save** the file.
 
-4. **Refresh** `index.html` in Google Chrome.
+4. **Refresh** the browser tab running your Vite dev server.
 
-5. **Open** the browser developer console (if not already open):
+5. **Open** the browser [developer console](glossary.md#console-browser) (if not already open):
 
     === "Windows"
 
@@ -295,16 +321,16 @@ Next, you will add JavaScript code that writes a new document to Firestore direc
 
 Before continuing to the next task, remove the test code so it does not run every time your page loads.
 
-1. **Open** `firestore_test.js` in VS Code.
+1. **Open** `src/main.js` in VS Code.
 
-2. **Delete** all the code inside the file, or **delete** the file entirely.
+2. **Remove** the line `import "./firestoreTest.js";`.
 
-3. **Open** `index.html` and **remove** the `<script>` tag that linked to `firestore_test.js`.
+3. **Delete** the file `src/firestoreTest.js` from your project.
 
 4. **Save** all modified files.
 
 !!! note
-    The test document you added to Firestore through the console and the document written by your JavaScript code will remain in the database. You can delete them manually from the [Firestore data viewer](glossary.md#firestore-data-viewer) by clicking the three-dot menu next to each document and selecting [Delete document].
+    The test documents you added (both through the console and through JavaScript) will remain in your Firestore database. You can delete them manually from the [Firestore data viewer](glossary.md#firestore-data-viewer) by clicking the three-dot menu next to each document and selecting [Delete document].
 
 ---
 
@@ -321,4 +347,4 @@ In this section, you:
 
 If both the read and write operations displayed the expected output in the browser console, your Firestore database is correctly configured. If you encountered errors, refer to the [Troubleshooting](troubleshooting.md) page.
 
-**Next:** Setting Up Firebase Authentication (Task 3)
+**Next:** [Setting Up Firebase Authentication](task3_authentication.md)

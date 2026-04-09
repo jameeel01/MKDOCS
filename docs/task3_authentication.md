@@ -206,5 +206,55 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
  
 ---
 
+## Adding Sign-Out to a Page
+ 
+To let users sign out, add a button and import the Firebase `signOut` function into that page's script.
+ 
+1. **Add** a sign-out button to the chosen HTML page:
+ 
+    ```html
+    <button id="signoutBtn">Sign Out</button>
+    ```
+ 
+2. **Open** that page's script file and **add** the following:
+ 
+    ```javascript
+    import { signOut } from "firebase/auth";
+    import { auth } from "./firebaseConfig.js";
+ 
+    document.getElementById("signoutBtn").addEventListener("click", () => {
+        signOut(auth)
+            .then(() => { window.location.href = "/Login.html"; })
+            .catch((error) => { console.error("Sign-out error:", error); });
+    });
+    ```
+ 
+3. **Save** the file.
+ 
+---
+
+## Verifying authentication is working
+ 
+1. **Run** the Vite development in the command line:
+ 
+    ```
+    npm run dev
+    ```
+ 
+   Vite should print a local URL such as `http://localhost:5173`.
+ 
+2. **Open** `http://localhost:5173/Login.html` in Google Chrome.
+ 
+3. **Click** the [Sign up] link.
+ 
+    The login form hides and the sign-up form appears.
+ 
+    ![Login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on Login.html")
+    *Figure 3: The sign-up view of Login.html.*
+ 
+4. **Enter** a username, a valid email addres
+
+
+ 
 
 

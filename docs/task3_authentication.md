@@ -43,7 +43,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
  
 7. **Click** [Save].
  
-    At this point, "Email/Password" appears as an **Enabled** provider in the list.
+    "Email/Password" should appear as an **Enabled** provider in the list.
  
 !!! success
     Email/Password authentication is now enabled for your Firebase project.

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The purpose of this guide is to help you set up [Google Firebase](https://firebase.google.com/) for your COMP 1800 project. Firebase is a cloud platform by Google that provides tools for hosting web applications, storing data in real-time databases, and managing user authentication — all without needing to build your own backend server.
+The purpose of this guide is to help you set up [Google Firebase](https://firebase.google.com/) for your COMP 1800 project. [Firebase](glossary.md#firebase) is a cloud platform by Google that provides tools for hosting web applications, storing data in real-time databases, and managing user authentication — all without needing to build your own backend server.
 
 In the CST program, you will use Firebase to deploy your COMP 1800 team project so it is accessible as a live website. This guide walks you through the full setup process, from creating a Firebase project to deploying your finished application.
 
@@ -12,28 +12,29 @@ If you are interested in more information about Firebase's full feature set, ple
 
 This guide is written for **first-term BCIT CST students** who are building a web application using HTML, CSS, and JavaScript for COMP 1800. No prior experience with Firebase, cloud platforms, or backend development is required.
 
-We assume you are comfortable with:
+We assume you can perform the following tasks without assistance:
 
-- Writing and editing HTML, CSS, and JavaScript files
-- Using a code editor such as VS Code
-- Basic terminal / command line navigation (e.g., `cd`, `ls`)
+- Open, edit, and save HTML, CSS, and JavaScript files in [VS Code](https://code.visualstudio.com/)
+- Navigate between folders in a terminal using commands such as `cd` and `ls` (macOS/Linux) or `cd` and `dir` (Windows)
+- Open a web browser and use the address bar to visit a URL
+- Copy and paste text between applications
 
 ## By the End of This Guide, You Will Be Able To
 
-1. Create and configure a Firebase project in the Firebase Console
-2. Set up Cloud Firestore as a database for your project
-3. Set up Firebase Authentication for user login
-4. Deploy your COMP 1800 project to Firebase Hosting as a live website
+1. [Create and configure a Firebase project in the Firebase Console](task1_firebase_setup.md)
+2. [Set up Cloud Firestore as a database for your project](task2_firestore_setup.md)
+3. Set up Firebase Authentication for user login *(coming soon)*
+4. Deploy your COMP 1800 project to Firebase Hosting as a live website *(coming soon)*
 
 ## Prerequisites
 
-Before starting these instructions, make sure you have the following:
+Before starting these instructions, make sure you have the following installed and ready:
 
 - A **Google account** (any Gmail account will work)
-- **VS Code** installed on your computer ([download here](https://code.visualstudio.com/))
-- **Node.js** (version 16 or higher) installed on your computer ([download here](https://nodejs.org/))
-- A working **COMP 1800 project** with at least an `index.html` file
-- **Google Chrome** browser (recommended for testing)
+- **[VS Code](https://code.visualstudio.com/)** installed on your computer — this is the code editor used throughout these instructions
+- **[Node.js](https://nodejs.org/)** (version 16 or higher) installed on your computer — required by the Firebase CLI for deployment in Task 4
+- A working **COMP 1800 project** folder containing at least an `index.html` file
+- **[Google Chrome](https://www.google.com/chrome/)** browser — recommended because these instructions reference Chrome's developer tools for testing
 
 !!! note
     To check if Node.js is installed, open your terminal and type `node -v`. If a version number appears (e.g., `v18.17.0`), you are ready to proceed. If not, download and install Node.js from the link above before continuing.
@@ -51,7 +52,7 @@ These instructions use the following typographic conventions:
 
 ## Admonitions
 
-This guide uses the following message boxes to provide additional information:
+This guide uses the following message boxes to provide additional information. Admonitions are always placed **before** the step they relate to. Read them before performing the action that follows.
 
 !!! note
     **Note** provides additional helpful information related to a step. Skipping a note will not cause errors, but reading it may save you time or clarify something.

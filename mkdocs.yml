@@ -27,6 +27,11 @@ theme:
     - content.code.copy
     - navigation.sections
     - navigation.top
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.footer
+    - toc.follow
     - toc.integrate
 
 nav:

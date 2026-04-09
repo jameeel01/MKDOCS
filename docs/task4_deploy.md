@@ -2,7 +2,7 @@
  
 ## Overview
  
-This section walks you through installing the Firebase CLI, logging in, building your project with Vite, and deploying to Firebase Hosting as a live website.
+This section walks you through installing the Firebase CLI, logging in, building your project with [Vite](glossary.md#vite), and deploying to [Firebase Hosting](glossary.md#firebase-hosting) as a live website.
  
 By the end of this page, your project will be publicly accessible at a `web.app` URL.
  
@@ -20,7 +20,14 @@ You will need to use the Firebase CLI tool to deploy your project directly from 
  
 1. **Open** the integrated terminal in VS Code:
 
- 
+    === "Windows"
+
+        **Press** ++ctrl+grave++.
+
+    === "macOS"
+
+        **Press** ++cmd+grave++.
+
 2. **Type** the following command and **press** ++enter++:
  
     ```
@@ -45,6 +52,32 @@ You will need to use the Firebase CLI tool to deploy your project directly from 
 
 ---
 
+## Logging In to Firebase
+
+Before you can initialize or deploy, you must authenticate the Firebase CLI with your Google account.
+
+1. **Run** the following command in the terminal:
+
+    ```bash
+    firebase login
+    ```
+
+    A browser window opens asking you to sign in with your Google account.
+
+2. **Sign in** with the same Google account you used to create your Firebase project.
+
+3. **Allow** the Firebase CLI to access your account when prompted.
+
+    The terminal displays a success message confirming you are logged in.
+
+    !!! note
+        You only need to log in once per computer. The CLI remembers your credentials for future sessions. If you need to switch accounts later, **run** `firebase logout` followed by `firebase login`.
+
+!!! success
+    You are now authenticated with the Firebase CLI.
+
+---
+
 ## Initializing Firebase Hosting
  
 1. **Confirm** your terminal is inside your project folder. 
@@ -55,11 +88,10 @@ You will need to use the Firebase CLI tool to deploy your project directly from 
     firebase init hosting
     ```
  
-   The Firebase CLI will start an interactive setup wizard.
+    The Firebase CLI will start an interactive setup wizard.
  
-  ![Terminal showing the Firebase init hosting wizard](assets/firebase_deployement_1.png "Firebase init hosting wizard")
-
-*Figure 2: The Firebase Hosting setup wizard.*
+    ![Terminal showing the Firebase init hosting wizard](assets/firebase_deployment_1.png "Firebase init hosting wizard")
+    *Figure 2: The Firebase Hosting setup wizard.*
  
 3. When prompted to "Please select an option," **select** [Use an existing project] and **press** ++enter++.
  
@@ -151,7 +183,7 @@ Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the buil
     ```
  
     ![Terminal showing the deploy complete confirmation and live URL](assets/firebase_deployment_3.png "Successful Firebase deploy")
-    *Figure 3: The deploy complete confirmation with your live URL.*
+    *Figure 4: The deploy complete confirmation with your live URL.*
  
 3. **Copy** the URL shown next to "Hosting URL."
  
@@ -169,7 +201,8 @@ Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the buil
 In this section, you:
  
 - Installed the Firebase CLI globally using npm
-- Configured Firebase Hosting with `"public": "dist"` to match Vite's output folder
+- Logged in to Firebase with your Google account
+- Configured [Firebase Hosting](glossary.md#firebase-hosting) with `"public": "dist"` to match [Vite's](glossary.md#vite) output folder
 - Built your project with `npm run build` to generate the `dist/` folder
 - Deployed the compiled build to a live `web.app` URL using `firebase deploy --only hosting`
  

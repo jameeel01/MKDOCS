@@ -36,10 +36,10 @@ theme:
 
 nav:
   - Home: index.md
-  - Setting Up Firebase: task1_firebase_setup.md
-  - Setting Up Firestore Database: task2_firestore_setup.md
-  - Setting Up Authentication: task3_authentication.md
-  - Deploying Your Project: task4_deploy.md
+  - 1. Setting Up Firebase: task1_firebase_setup.md
+  - 2. Setting Up Cloud Firestore Database: task2_firestore_setup.md
+  - 3. Setting Up Firebase Authentication: task3_authentication.md
+  - 4. Deploying Your Project: task4_deploy.md
   - Troubleshooting: troubleshooting.md
   - Glossary: glossary.md
 

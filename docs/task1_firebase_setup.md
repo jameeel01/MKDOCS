@@ -1,4 +1,4 @@
-# Setting up Firebase
+# Setting Up Firebase
 
 ## Overview
 
@@ -109,21 +109,52 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 
 ## Adding Firebase to Your Project
 
-With your configuration keys ready, you can now connect Firebase to your actual COMP 1800 project files. This involves creating a configuration file, linking the [Firebase SDK](glossary.md#firebase-sdk-software-development-kit) scripts in your HTML, and verifying the connection.
+With your configuration keys ready, you can now install the Firebase [SDK](glossary.md#firebase-sdk-software-development-kit) and connect it to your COMP 1800 project. Since your project uses [Vite](glossary.md#vite), you will install Firebase as an npm package and use `import` statements rather than `<script>` tags.
 
-### Adding the Firebase Configuration File
+### Installing Firebase via npm
 
-1. **Open** your COMP 1800 project folder in VS Code.
+1. **Open** the integrated terminal in VS Code:
 
-2. **Create** a new file inside your project's `scripts/` folder and **name** it `firebaseAPI_TEAMXX.js`.
+    === "Windows"
+
+        **Press** ++ctrl+grave++.
+
+    === "macOS"
+
+        **Press** ++cmd+grave++.
+
+2. **Confirm** your terminal is inside your COMP 1800 project folder. The folder name should appear in the terminal prompt.
 
     !!! note
-        Replace `XX` with your actual team number (e.g., `firebaseAPI_TEAM05.js`). This naming convention is a COMP 1800 requirement.
+        If you are not in the correct folder, **type** `cd` followed by the path to your project folder and **press** ++enter++.
 
-3. **Paste** the following code into `firebaseAPI_TEAMXX.js`, replacing the placeholder values with the configuration you copied earlier:
+3. **Type** the following command and **press** ++enter++:
+
+    ```bash
+    npm install firebase
+    ```
+
+    npm downloads the Firebase SDK and adds it to your `node_modules/` folder. You will see a confirmation message when the installation is complete.
+
+    <!-- SCREENSHOT: Terminal showing successful npm install firebase output. -->
+    ![Terminal showing npm install firebase output](assets/firebase_setup_npm_install.png "npm install firebase output")
+    *Figure 7: Successful Firebase npm installation.*
+
+### Creating the Firebase Configuration File
+
+4. **Create** a new file at `src/firebaseConfig.js`.
+
+    !!! note
+        Your COMP 1800 Vite project stores JavaScript source files in the `src/` folder. All Firebase modules will import from this single configuration file.
+
+5. **Paste** the following code into `src/firebaseConfig.js`, replacing the placeholder values with the configuration you copied earlier:
 
     ```javascript
-    // Your Firebase configuration
+    // src/firebaseConfig.js
+    import { initializeApp } from "firebase/app";
+    import { getFirestore } from "firebase/firestore";
+    import { getAuth } from "firebase/auth";
+
     const firebaseConfig = {
         apiKey: "YOUR_API_KEY",
         authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -133,70 +164,43 @@ With your configuration keys ready, you can now connect Firebase to your actual 
         appId: "YOUR_APP_ID"
     };
 
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
+
+    export const db   = getFirestore(app);
+    export const auth = getAuth(app);
     ```
+
+    This file initializes Firebase once and exports the `db` ([Firestore](glossary.md#cloud-firestore)) and `auth` ([Authentication](glossary.md#authentication)) instances. Every other file in your project will import from here rather than calling `initializeApp` again.
 
     !!! warning
-        Make sure you replace every `YOUR_...` placeholder with the actual values from your Firebase configuration. If any value is missing or incorrect, Firebase will not connect. See [Troubleshooting](troubleshooting.md) if you encounter a `No Firebase App '[DEFAULT]' has been created` error.
+        Make sure you replace every `YOUR_...` placeholder with the actual values from your Firebase configuration. If any value is missing or incorrect, Firebase will not connect. You can find your values again in the [Firebase Console](glossary.md#firebase-console) under [Project Settings] → [Your apps] → [SDK setup and configuration]. See [Troubleshooting](troubleshooting.md) if you encounter errors.
 
-4. **Save** the file.
-
-### Linking Firebase SDKs in Your HTML
-
-5. **Open** your `index.html` file in VS Code.
-
-6. **Add** the following `<script>` tags inside the `<head>` section of your HTML, **before** any of your own script files:
-
-    ```html
-    <!-- Firebase App (the core Firebase SDK) - REQUIRED -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
-    <!-- Firebase Firestore (database) -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    ```
-
-    !!! note
-        The version `8.10.1` is the latest release of the Firebase v8 [SDK](glossary.md#firebase-sdk-software-development-kit), which uses simple `<script>` tags loaded from a [CDN](glossary.md#cdn-content-delivery-network). COMP 1800 projects use v8 because it does not require a module bundler. Do not use the v9+ modular SDK unless your instructor specifies otherwise.
-
-7. **Add** a `<script>` tag linking to your Firebase configuration file, **after** the Firebase SDK scripts:
-
-    ```html
-    <!-- Your Firebase configuration -->
-    <script src="./scripts/firebaseAPI_TEAMXX.js"></script>
-    ```
-
-    Your `<head>` section should now look similar to this:
-
-    ```html
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Our COMP 1800 Project</title>
-
-        <!-- Firebase SDKs -->
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-
-        <!-- Your Firebase config -->
-        <script src="./scripts/firebaseAPI_TEAMXX.js"></script>
-
-        <!-- Your own CSS and JS files below -->
-        <link rel="stylesheet" href="./styles/style.css">
-    </head>
-    ```
-
-8. **Save** `index.html`.
+6. **Save** `src/firebaseConfig.js`.
 
 ### Verifying the Connection
 
-9. **Open** `index.html` in Google Chrome by double-clicking the file, or by right-clicking and selecting [Open with] → [Google Chrome].
+7. **Open** your `src/main.js` file (or whichever script is loaded by your `index.html`).
 
-10. **Open** the browser [developer console](glossary.md#console-browser):
+8. **Add** the following temporary import at the top of the file:
+
+    ```javascript
+    import { db } from "./firebaseConfig.js";
+    console.log("Firebase connected:", db.app.name);
+    ```
+
+9. **Save** the file.
+
+10. **Start** the Vite development server by running the following in your terminal:
+
+    ```bash
+    npm run dev
+    ```
+
+    [Vite](glossary.md#vite) should print a local URL such as `http://localhost:5173`.
+
+11. **Open** the URL in Google Chrome.
+
+12. **Open** the browser [developer console](glossary.md#console-browser):
 
     === "Windows"
 
@@ -206,20 +210,18 @@ With your configuration keys ready, you can now connect Firebase to your actual 
 
         **Press** ++cmd+option+j++.
 
-11. **Type** the following into the console and **press** ++enter++:
+    At this point, the console should print `Firebase connected: [DEFAULT]`. This confirms Firebase has been initialized successfully.
 
-    ```javascript
-    firebase.app().name
-    ```
-
-    At this point, the console should print `"[DEFAULT]"`.
-
-    <!-- SCREENSHOT: Chrome DevTools console showing the output "[DEFAULT]" after typing firebase.app().name. -->
+    <!-- SCREENSHOT: Chrome DevTools console showing "Firebase connected: [DEFAULT]". -->
     ![Chrome console showing successful Firebase connection](assets/firebase_setup_7.png "Verifying Firebase connection in Chrome console")
-    *Figure 7: Successful Firebase connection — the console returns "[DEFAULT]".*
+    *Figure 8: Successful Firebase connection — the console prints "[DEFAULT]".*
+
+13. **Remove** the two temporary lines you added to `src/main.js` (the `import` and `console.log`).
+
+14. **Save** the file.
 
 !!! success
-    Your Firebase project is now connected to your COMP 1800 project. If the console returned `"[DEFAULT]"`, Firebase is properly initialized. You are now ready to proceed to [Setting Up Firestore](task2_firestore_setup.md).
+    Your Firebase project is now connected to your COMP 1800 project. If the console printed `Firebase connected: [DEFAULT]`, Firebase is properly initialized. You are now ready to proceed to [Setting Up Firestore](task2_firestore_setup.md).
 
 ---
 
@@ -229,9 +231,9 @@ In this section, you:
 
 - Created a new Firebase project in the [Firebase Console](glossary.md#firebase-console)
 - Registered your COMP 1800 project as a Firebase web app
-- Added the [Firebase SDK](glossary.md#firebase-sdk-software-development-kit) scripts and configuration to your `index.html`
-- Verified the connection using the browser [developer console](glossary.md#console-browser)
+- Installed the Firebase [SDK](glossary.md#firebase-sdk-software-development-kit) via npm and created `src/firebaseConfig.js`
+- Verified the connection using [Vite](glossary.md#vite) and the browser [developer console](glossary.md#console-browser)
 
-If the console printed `"[DEFAULT]"` in the verification step, everything is working correctly. If you see errors instead, refer to the [Troubleshooting](troubleshooting.md) page.
+If the console printed `Firebase connected: [DEFAULT]` in the verification step, everything is working correctly. If you see errors instead, refer to the [Troubleshooting](troubleshooting.md) page.
 
 **Next:** [Setting Up Cloud Firestore](task2_firestore_setup.md)

@@ -127,3 +127,52 @@ Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the buil
     Your project has been compiled into the `dist/` folder and is ready to deploy.
  
 ---
+
+## Deploying to Firebase Hosting
+ 
+1. **Run** the deploy command:
+ 
+    ```
+    firebase deploy --only hosting
+    ```
+ 
+   The Firebase CLI uploads the contents of your `dist/` folder to Firebase's servers. You will see upload progress in the terminal.
+
+ 
+2. **Wait** for the deployment to complete.
+ 
+    The terminal displays a confirmation message similar to:
+ 
+    ```
+    ✔  Deploy complete!
+ 
+    Project Console: https://console.firebase.google.com/project/your-project-id/overview
+    Hosting URL:     https://your-project-id.web.app
+    ```
+ 
+    ![Terminal showing the deploy complete confirmation and live URL](assets/firebase_deployment_3.png "Successful Firebase deploy")
+    *Figure 3: The deploy complete confirmation with your live URL.*
+ 
+3. **Copy** the URL shown next to "Hosting URL."
+ 
+4. **Open** the URL in a browser tab.
+ 
+    Your COMP 1800 project should load as a live, publicly accessible website. Your URL will follow the pattern `https://your-project-id.web.app` using your own Firebase project ID.
+ 
+!!! success
+    Your project is now live on Firebase Hosting.
+ 
+---
+
+## Conclusion
+ 
+In this section, you:
+ 
+- Installed the Firebase CLI globally using npm
+- Configured Firebase Hosting with `"public": "dist"` to match Vite's output folder
+- Built your project with `npm run build` to generate the `dist/` folder
+- Deployed the compiled build to a live `web.app` URL using `firebase deploy --only hosting`
+ 
+If your project loads correctly at the Firebase Hosting URL, your deployment is complete. If you see a blank page, a 404 error, or content that does not match your latest changes, refer to the [Troubleshooting](troubleshooting.md) page.
+ 
+**You have completed the full Firebase setup for your COMP 1800 project.**

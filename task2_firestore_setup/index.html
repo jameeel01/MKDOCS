@@ -1,0 +1,1036 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://placeholder.example/task2_firestore_setup/">
+      
+      
+        <link rel="prev" href="../task1_firebase_setup/">
+      
+      
+        <link rel="next" href="../task3_authentication/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>2. Setting Up Cloud Firestore Database - Firebase User Documentation for COMP 1800</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Google Sans";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setting-up-cloud-firestore-database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Firebase User Documentation for COMP 1800" class="md-header__button md-logo" aria-label="Firebase User Documentation for COMP 1800" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Firebase User Documentation for COMP 1800
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. Setting Up Cloud Firestore Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Firebase User Documentation for COMP 1800" class="md-nav__button md-logo" aria-label="Firebase User Documentation for COMP 1800" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Firebase User Documentation for COMP 1800
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task1_firebase_setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Setting Up Firebase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Setting Up Cloud Firestore Database
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Setting Up Cloud Firestore Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-firestore-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Firestore Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#understanding-firestore-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding Firestore Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-data-manually-via-the-firebase-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding Data Manually via the Firebase Console
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-firestore-data-from-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading Firestore Data from Your Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-data-to-firestore-from-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Writing Data to Firestore from Your Project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cleaning-up-test-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cleaning Up Test Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task3_authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Setting Up Firebase Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task4_deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Deploying Your Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="setting-up-cloud-firestore-database">Setting Up Cloud Firestore Database</h1>
+<h2 id="overview">Overview</h2>
+<p>This section walks you through creating a <a href="../glossary/#cloud-firestore">Cloud Firestore</a> database, understanding how Firestore organizes data, adding data manually through the <a href="../glossary/#firebase-console">Firebase Console</a>, and reading and writing data from your COMP 1800 project using JavaScript.</p>
+<p>By the end of this page, your project will be able to store and retrieve data from a cloud database.</p>
+<div class="admonition warning">
+<p class="admonition-title">Prerequisites</p>
+<p>Make sure you have completed <a href="../task1_firebase_setup/">Task 1: Setting Up Firebase</a> before starting this section. Your project must already be connected to Firebase.</p>
+</div>
+<hr />
+<h2 id="creating-a-firestore-database">Creating a Firestore Database</h2>
+<p>Cloud Firestore is Firebase's flexible, scalable database. You will use it to store data such as user profiles, app content, and settings for your COMP 1800 project.</p>
+<ol>
+<li>
+<p><strong>Open</strong> the <a href="https://console.firebase.google.com">Firebase Console</a> and <strong>click</strong> on your project name to open it.</p>
+</li>
+<li>
+<p><strong>Click</strong> [Databases &amp; Storage] in the left sidebar menu.</p>
+<p>A submenu expands below the Build heading.</p>
+<p><!-- SCREENSHOT: Left sidebar with [Databases and Storage] expanded showing submenu items including Firestore. Highlight the sidebar area. -->
+<img alt="Firebase sidebar with Databases and Storage menu expanded" src="../assets/firestore_setup_1.png" title="Databases &amp; Storage submenu in Firebase Console" />
+<em>Figure 1: The Databases &amp; Storage submenu in the left sidebar.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Firestore].</p>
+<p>The Firestore landing page appears with a "Create database" button.</p>
+<p><!-- SCREENSHOT: Firestore landing page showing the "Create database" button in the center. -->
+<img alt="Firestore landing page with Create database button" src="../assets/firestore_setup_2.png" title="Firestore Database landing page" />
+<em>Figure 2: The Firestore Database landing page.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Create database].</p>
+<p>A setup wizard opens.</p>
+</li>
+<li>
+<p><strong>Select</strong> Standard Edition.</p>
+<p><img alt="Firestore edition selection" src="../assets/firestore_setup_3.png" title="Selecting Firestore edition" />
+<em>Figure 3: Selecting Standard Edition.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Next].</p>
+</li>
+<li>
+<p><strong>Select</strong> a Firestore location from the dropdown menu. <strong>Choose</strong> <code>northamerica-northeast1 (Montréal)</code> as it is the closest region to Vancouver.</p>
+<div class="admonition danger">
+<p class="admonition-title">Permanent Location</p>
+<p>The database location <strong>cannot be changed</strong> after creation. Make sure you select the correct region before proceeding. Choosing a distant region will increase data retrieval times for your users.</p>
+</div>
+<p><!-- SCREENSHOT: Location dropdown with "us-west1 (Oregon)" selected or highlighted. -->
+<img alt="Firestore location selection dropdown" src="../assets/firestore_setup_4.png" title="Selecting Firestore database location" />
+<em>Figure 4: Selecting the Oregon database location.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Next].</p>
+</li>
+<li>
+<p><strong>Select</strong> "Start in <a href="../glossary/#test-mode">test mode</a>."</p>
+<p><a href="../glossary/#test-mode">Test mode</a> allows open read and write access for 30 days, which is suitable for development.</p>
+<div class="admonition warning">
+<p class="admonition-title">Test Mode Expiry</p>
+<p>Test mode <a href="../glossary/#security-rules">security rules</a> expire after 30 days. If your database reads and writes suddenly stop working later in the term, check whether your security rules have expired. See <a href="../troubleshooting/#firestore-reads-and-writes-suddenly-stopped-working">Troubleshooting</a> for the fix.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Expiry Date</p>
+<p>The Firebase Console will display the exact expiry date for your test mode rules. Take note of this date.</p>
+</div>
+<p><!-- SCREENSHOT: Security rules screen with "Start in test mode" radio button selected, showing the expiry date text. -->
+<img alt="Security rules screen with test mode selected" src="../assets/firestore_setup_5.png" title="Start in test mode selected" />
+<em>Figure 5: Selecting test mode for security rules.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Create].</p>
+<p>Firestore takes a few seconds to provision your database. Once complete, the Firestore data viewer appears. It will be empty.</p>
+<p><!-- SCREENSHOT: Empty Firestore data viewer showing the "Start collection" prompt in the center. -->
+<img alt="Empty Firestore data viewer" src="../assets/firestore_setup_6.png" title="Empty Firestore data viewer" />
+<em>Figure 6: The empty Firestore data viewer, ready for data.</em></p>
+</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Database Created</p>
+<p>You have created a Cloud Firestore database. The data viewer is now visible and ready for you to add <a href="../glossary/#collection">collections</a> and <a href="../glossary/#document">documents</a>.</p>
+</div>
+<hr />
+<h2 id="understanding-firestore-structure">Understanding Firestore Structure</h2>
+<p>Before adding data, it is important to understand how Firestore organizes information. Firestore does not use traditional tables and rows like SQL databases. Instead, it uses <strong><a href="../glossary/#collection">collections</a></strong> and <strong><a href="../glossary/#document">documents</a></strong>.</p>
+<ul>
+<li>A <strong>collection</strong> is a group of documents, similar to a folder. For example, a collection called <code>users</code> would hold all user-related documents.</li>
+<li>A <strong>document</strong> is a single record within a collection, similar to a file inside a folder. Each document contains <strong><a href="../glossary/#field">fields</a></strong> with values. For example, a document inside <code>users</code> might have fields like <code>name</code>, <code>email</code>, and <code>city</code>.</li>
+<li>Each document is identified by a unique <strong><a href="../glossary/#document-id">document ID</a></strong>, which can be auto-generated or manually set.</li>
+</ul>
+<p>Here is a visual example of how COMP 1800 project data might be organized:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>users (collection)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── user001 (document)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── name: &quot;Alice&quot;
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── email: &quot;alice@bcit.ca&quot;
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── city: &quot;Vancouver&quot;
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── user002 (document)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── name: &quot;Bob&quot;
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── email: &quot;bob@bcit.ca&quot;
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── city: &quot;Burnaby&quot;
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">SQL Analogy</p>
+<p>Think of collections as tables and documents as rows if you are familiar with databases. The key difference is that each document can have different fields — they do not all need to follow the same structure.</p>
+</div>
+<hr />
+<h2 id="adding-data-manually-via-the-firebase-console">Adding Data Manually via the Firebase Console</h2>
+<p>Before writing JavaScript code, you will add a test document using the Firebase Console to confirm your database is working.</p>
+<ol>
+<li>
+<p>From the Firestore data viewer, <strong>click</strong> [Start collection].</p>
+<p><!-- SCREENSHOT: Firestore viewer with the "Start collection" link/button highlighted. -->
+<img alt="Start collection button in Firestore" src="../assets/firestore_setup_7.png" title="Start collection button" />
+<em>Figure 7: The Start collection button.</em></p>
+</li>
+<li>
+<p><strong>Enter</strong> <code>users</code> as the Collection ID.</p>
+<p><!-- SCREENSHOT: The "Start a collection" dialog with "users" typed in the Collection ID field. -->
+<img alt="Collection ID dialog with users entered" src="../assets/firestore_setup_8.png" title="Entering the Collection ID" />
+<em>Figure 8: Entering the collection name.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Next].</p>
+<p>The "Add a document" panel appears.</p>
+</li>
+<li>
+<p><strong>Click</strong> [Auto-ID] to let Firebase generate a unique <a href="../glossary/#document-id">document ID</a> automatically.</p>
+<div class="admonition note">
+<p class="admonition-title">Auto-Generated IDs</p>
+<p>Auto-generated IDs look like a random string of characters (e.g., <code>aB3dEf7gHi</code>). This is normal. You can also enter a custom ID if you prefer, but Auto-ID is recommended for most cases.</p>
+</div>
+</li>
+<li>
+<p><strong>Enter</strong> the first field:</p>
+<ul>
+<li>Field name: <code>name</code></li>
+<li>Type: <strong>select</strong> <code>string</code> from the dropdown</li>
+<li>Value: <code>Test User</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Click</strong> the <strong>+</strong> (add field) button to add another field:</p>
+<ul>
+<li>Field name: <code>email</code></li>
+<li>Type: <strong>select</strong> <code>string</code></li>
+<li>Value: <code>testuser@bcit.ca</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Click</strong> the <strong>+</strong> (add field) button one more time to add a third field:</p>
+<ul>
+<li>Field name: <code>city</code></li>
+<li>Type: <strong>select</strong> <code>string</code></li>
+<li>Value: <code>Vancouver</code></li>
+</ul>
+<p><!-- SCREENSHOT: The "Add a document" panel showing all three fields filled in (name, email, city) with the Auto-ID generated. -->
+<img alt="Add a document panel with three fields filled in" src="../assets/firestore_setup_9.png" title="Adding a document with fields" />
+<em>Figure 9: A completed document ready to save.</em></p>
+</li>
+<li>
+<p><strong>Click</strong> [Save].</p>
+<p>The document now appears in the Firestore data viewer under the <code>users</code> collection.</p>
+<p><!-- SCREENSHOT: Firestore data viewer showing the "users" collection with the newly created document and its fields visible. -->
+<img alt="Firestore viewer showing the new document" src="../assets/firestore_setup_10.png" title="Saved document in Firestore" />
+<em>Figure 10: The saved document visible in the Firestore data viewer.</em></p>
+</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Document Added</p>
+<p>You have manually added a document to Firestore. The <code>users</code> collection now contains one document with <code>name</code>, <code>email</code>, and <code>city</code> fields.</p>
+</div>
+<hr />
+<h2 id="reading-firestore-data-from-your-project">Reading Firestore Data from Your Project</h2>
+<p>Now that there is data in your Firestore database, you will write JavaScript to retrieve and display it in the browser <a href="../glossary/#console-browser">console</a>.</p>
+<ol>
+<li>
+<p><strong>Open</strong> your COMP 1800 project in VS Code.</p>
+</li>
+<li>
+<p><strong>Create</strong> a new file at <code>src/firestoreTest.js</code>.</p>
+</li>
+<li>
+<p><strong>Add</strong> the following code to <code>src/firestoreTest.js</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// src/firestoreTest.js</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nx">getDocs</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;firebase/firestore&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./firebaseConfig.js&quot;</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// Read all documents from the &quot;users&quot; collection</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">readUsers</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">querySnapshot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getDocs</span><span class="p">(</span><span class="nx">collection</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">));</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nx">querySnapshot</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; =&gt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nx">readUsers</span><span class="p">();</span>
+</code></pre></div>
+<p>This code imports the Firestore functions from the Firebase v9 SDK, connects to your database via the <code>db</code> instance from <code>firebaseConfig.js</code>, and prints each document's ID and data to the browser console.</p>
+</li>
+<li>
+<p><strong>Open</strong> <code>src/main.js</code> in VS Code.</p>
+</li>
+<li>
+<p><strong>Add</strong> the following import at the top of the file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="s2">&quot;./firestoreTest.js&quot;</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Import Order</p>
+<p>The <code>firestoreTest.js</code> import must appear <strong>after</strong> any imports from <code>firebaseConfig.js</code>. If <code>firebaseConfig.js</code> has not been loaded yet, you will see an initialization error. See <a href="../troubleshooting/#firebase-initialization-errors-in-vite">Troubleshooting</a> for help resolving this.</p>
+</div>
+</li>
+<li>
+<p><strong>Save</strong> both files.</p>
+</li>
+<li>
+<p><strong>Start</strong> the Vite development server (if not already running):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</code></pre></div>
+</li>
+<li>
+<p><strong>Open</strong> the URL printed by Vite (e.g., <code>http://localhost:5173</code>) in Google Chrome.</p>
+</li>
+<li>
+<p><strong>Open</strong> the browser <a href="../glossary/#console-browser">developer console</a>:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Press</strong> <span class="keys"><kbd class="key-f12">F12</kbd></span> or <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-j">J</kbd></span>.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Press</strong> <span class="keys"><kbd class="key-command">Cmd</kbd><span>+</span><kbd class="key-option">Option</kbd><span>+</span><kbd class="key-j">J</kbd></span>.</p>
+</div>
+</div>
+</div>
+<p>The console should display the document ID and data you added earlier. The output will look similar to:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>VvBEUU2ZnbdUXI7FlG7t  =&gt;  {name: &quot;Test User&quot;, email: &quot;testuser@bcit.ca&quot;, city: &quot;Vancouver&quot;}
+</code></pre></div>
+<p><!-- SCREENSHOT: Chrome DevTools console showing the Firestore read output with the document ID and fields printed. -->
+<img alt="Console output showing Firestore data" src="../assets/firestore_setup_11.png" title="Firestore read output in Chrome console" />
+<em>Figure 11: Firestore data successfully read and displayed in the console.</em></p>
+</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Read Successful</p>
+<p>Your project can now read data from Firestore. If you see your document data printed in the console, the connection is working correctly. If nothing appears, see <a href="../troubleshooting/#console-shows-no-output-when-reading-from-firestore">Troubleshooting</a>.</p>
+</div>
+<hr />
+<h2 id="writing-data-to-firestore-from-your-project">Writing Data to Firestore from Your Project</h2>
+<p>Next, you will add JavaScript code that writes a new document to Firestore directly from your project.</p>
+<ol>
+<li>
+<p><strong>Open</strong> <code>src/firestoreTest.js</code> in VS Code.</p>
+</li>
+<li>
+<p><strong>Replace</strong> the entire contents with the following code, which includes both reading and writing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// src/firestoreTest.js</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">collection</span><span class="p">,</span><span class="w"> </span><span class="nx">getDocs</span><span class="p">,</span><span class="w"> </span><span class="nx">addDoc</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;firebase/firestore&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;./firebaseConfig.js&quot;</span><span class="p">;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">// Read all documents from the &quot;users&quot; collection</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">readUsers</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">querySnapshot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">getDocs</span><span class="p">(</span><span class="nx">collection</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">));</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nx">querySnapshot</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">doc</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; =&gt; &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">doc</span><span class="p">.</span><span class="nx">data</span><span class="p">());</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1">// Write a new document to the &quot;users&quot; collection</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">addUser</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">docRef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">addDoc</span><span class="p">(</span><span class="nx">collection</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;users&quot;</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">            </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Jane Doe&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">            </span><span class="nx">email</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;janedoe@bcit.ca&quot;</span><span class="p">,</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">            </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Surrey&quot;</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Document written with ID: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">docRef</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">&quot;Error adding document: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="p">}</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="nx">readUsers</span><span class="p">();</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="nx">addUser</span><span class="p">();</span>
+</code></pre></div>
+<p>This code uses the v9 modular function <code>addDoc</code> to create a new <a href="../glossary/#document">document</a> in the <code>users</code> <a href="../glossary/#collection">collection</a> with three <a href="../glossary/#field">fields</a>: <code>name</code>, <code>email</code>, and <code>city</code>. Firebase automatically generates a unique <a href="../glossary/#document-id">document ID</a>.</p>
+</li>
+<li>
+<p><strong>Save</strong> the file.</p>
+</li>
+<li>
+<p><strong>Refresh</strong> the browser tab running your Vite dev server.</p>
+</li>
+<li>
+<p><strong>Open</strong> the browser <a href="../glossary/#console-browser">developer console</a> (if not already open):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">macOS</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Press</strong> <span class="keys"><kbd class="key-f12">F12</kbd></span> or <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-j">J</kbd></span>.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Press</strong> <span class="keys"><kbd class="key-command">Cmd</kbd><span>+</span><kbd class="key-option">Option</kbd><span>+</span><kbd class="key-j">J</kbd></span>.</p>
+</div>
+</div>
+</div>
+<p>The console should display a message similar to:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Document written with ID: OAKCC8bC1TkKFZJ6hZqa
+</code></pre></div>
+<p><!-- SCREENSHOT: Chrome DevTools console showing the "Document written with ID: ..." success message. -->
+<img alt="Console showing successful document write" src="../assets/firestore_setup_12.png" title="Firestore write confirmation in console" />
+<em>Figure 12: Confirmation that a new document was written to Firestore.</em></p>
+</li>
+<li>
+<p><strong>Return</strong> to the Firebase Console in your browser.</p>
+</li>
+<li>
+<p><strong>Navigate</strong> to [Firestore Database] and <strong>click</strong> on the <code>users</code> collection.</p>
+</li>
+<li>
+<p><strong>Verify</strong> that the new document appears in the data viewer with the fields <code>name: "Jane Doe"</code>, <code>email: "janedoe@bcit.ca"</code>, and <code>city: "Surrey"</code>.</p>
+<p><!-- SCREENSHOT: Firestore data viewer showing two documents in the "users" collection — the original test document and the newly written "Jane Doe" document. -->
+<img alt="Firestore viewer showing two documents" src="../assets/firestore_setup_13.png" title="Two documents in the users collection" />
+<em>Figure 13: The users collection now contains two documents.</em></p>
+</li>
+</ol>
+<div class="admonition success">
+<p class="admonition-title">Read &amp; Write Working</p>
+<p>Your project can now both read from and write to Firestore. You have a fully functional database connection.</p>
+</div>
+<hr />
+<h2 id="cleaning-up-test-code">Cleaning Up Test Code</h2>
+<p>Before continuing to the next task, remove the test code so it does not run every time your page loads.</p>
+<ol>
+<li>
+<p><strong>Open</strong> <code>src/main.js</code> in VS Code.</p>
+</li>
+<li>
+<p><strong>Remove</strong> the line <code>import "./firestoreTest.js";</code>.</p>
+</li>
+<li>
+<p><strong>Delete</strong> the file <code>src/firestoreTest.js</code> from your project.</p>
+</li>
+<li>
+<p><strong>Save</strong> all modified files.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Test Data Cleanup</p>
+<p>The test documents you added (both through the console and through JavaScript) will remain in your Firestore database. You can delete them manually from the <a href="../glossary/#firestore-data-viewer">Firestore data viewer</a> by clicking the three-dot menu next to each document and selecting [Delete document].</p>
+</div>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>In this section, you:</p>
+<ul>
+<li>Created a <a href="../glossary/#cloud-firestore">Cloud Firestore</a> database in the <a href="../glossary/#firebase-console">Firebase Console</a></li>
+<li>Learned how Firestore organizes data using <a href="../glossary/#collection">collections</a> and <a href="../glossary/#document">documents</a></li>
+<li>Added a test document manually through the Firebase Console</li>
+<li>Read Firestore data from your project using JavaScript and displayed it in the browser <a href="../glossary/#console-browser">console</a></li>
+<li>Wrote a new document to Firestore from your project using JavaScript</li>
+<li>Cleaned up test code</li>
+</ul>
+<p>If both the read and write operations displayed the expected output in the browser console, your Firestore database is correctly configured. If you encountered errors, refer to the <a href="../troubleshooting/">Troubleshooting</a> page.</p>
+<p><strong>Next:</strong> <a href="../task3_authentication/">Setting Up Firebase Authentication</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../task1_firebase_setup/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. Setting Up Firebase">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. Setting Up Firebase
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../task3_authentication/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. Setting Up Firebase Authentication">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. Setting Up Firebase Authentication
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.sections", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.footer", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

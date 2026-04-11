@@ -6,13 +6,13 @@ This section walks you through enabling Firebase [Authentication](glossary.md#au
 
 The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `login.html` page when they visit a protected page without being signed in.
 
-!!! warning
+!!! warning "Prerequisites"
     Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) 
     and [Task 2: Setting Up Cloud Firestore Database](task2_firestore_setup.md) 
     before starting this section. Your project must already have Firebase installed 
     as a Node package and have a working `src/firebaseConfig.js` skeleton.
 
-!!! note
+!!! note "Firebase v9 SDK"
     Your COMP 1800 project uses the **Firebase v9 modular SDK** bundled through [Vite](glossary.md#vite). All Firebase functions are imported using ES module `import` statements rather than loaded via `<script>` tags.
 ---
 
@@ -35,7 +35,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
 
 6. **Toggle** on the first switch labelled "Email/Password".
  
-    !!! note
+    !!! note "Passwordless Sign-In"
         Do **not** enable the second toggle labelled "Email link (passwordless sign-in)." Your COMP 1800 project will use standard password-based login only.
  
     ![Email/Password configuration panel with the top toggle enabled](assets/firebase_authentication_2.png "Enabling Email/Password authentication")
@@ -45,7 +45,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
  
     "Email/Password" should appear as an **Enabled** provider in the list.
  
-!!! success
+!!! success "Authentication Enabled"
     Email/Password authentication is now enabled for your Firebase project.
  
 ---
@@ -79,7 +79,7 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
     export const auth = getAuth(app);
     ```
  
-    !!! warning
+    !!! warning "Replace Placeholders"
         Replace every `YOUR_...` placeholder with the actual values from your Firebase project. Find these in the Firebase Console under [Project Settings] → [Your apps] → [SDK setup and configuration].
  
 3. **Save** `src/firebaseConfig.js`.
@@ -118,10 +118,6 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
     import { requireLogin } from "./authentication.js";
     requireLogin();
     ```
-
-!!! note
-    Do **not** add `requireLogin()` to the script loaded by `login.html` itself.
- 
 ---
 
 ## Creating src/login.js
@@ -265,7 +261,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
     Once the user is logged in, the browser should redirect back to `index.html`.
  
-!!! success
+!!! success "Authentication Working"
     Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
 
 ---

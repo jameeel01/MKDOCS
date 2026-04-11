@@ -4,7 +4,7 @@
 
 This section walks you through creating a [Firebase](glossary.md#firebase) project, registering your web app, and connecting Firebase to your COMP 1800 project files. By the end of this page, your local project will be linked to Firebase and ready for additional services like [Cloud Firestore](glossary.md#cloud-firestore) and [Authentication](glossary.md#authentication).
 
-!!! note
+!!! note "One-Time Setup"
     This process only needs to be done once per project. Once Firebase is connected, all team members can use the same project by sharing the configuration file.
 
 ---
@@ -21,7 +21,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
 2. **Sign in** with your Google account.
 
-    !!! note
+    !!! note "First-Time View"
         The Firebase Console dashboard should appear. If this is your first time, the page may be mostly empty.
 
     <!-- SCREENSHOT: Firebase Console dashboard showing the main page with "Add project" button visible. Crop to show just the center of the page. -->
@@ -38,14 +38,14 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
 4. **Enter** a project name (e.g., `comp1800-bby00` where `00` is your team number).
 
-    !!! note
+    !!! note "Project ID Suffix"
         Firebase may append a random string of characters to your project name to create a unique project ID (e.g., `comp1800-bby00-a1b2c`). This is normal and expected.
 
 5. **Click** [Continue].
 
 6. On the Google Analytics screen, **toggle off** the "Enable Google Analytics for this project" switch.
 
-    !!! note
+    !!! note "Google Analytics"
         Google Analytics is not required for COMP 1800. Disabling it simplifies the setup. You can always enable it later from your project settings.
 
     <!-- SCREENSHOT: Google Analytics toggle screen with the switch in the OFF position. -->
@@ -60,7 +60,7 @@ A Firebase project is a container that holds all the Firebase services (hosting,
 
     You should now see your Firebase project dashboard.
 
-!!! success
+!!! success "Project Created"
     You have successfully created a Firebase project. The project dashboard should now be visible with your project name at the top left.
 
 ---
@@ -81,7 +81,7 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 
 3. **Check** the box labelled "Also set up Firebase Hosting for this app."
 
-    !!! note
+    !!! note "Firebase Hosting"
         Checking this box now saves you a step later when you deploy your project in Task 4. [Firebase Hosting](glossary.md#firebase-hosting) is the service that makes your project accessible as a live website.
 
     <!-- SCREENSHOT: The "Add Firebase to your web app" panel showing the nickname field and the Firebase Hosting checkbox checked. -->
@@ -98,12 +98,12 @@ Now that your Firebase project exists, you need to register your COMP 1800 proje
 
 5. **Copy** the entire code block shown on your screen. You will need this in the next section.
 
-    !!! warning
+    !!! warning "API Key Security"
         Do not share your Firebase configuration keys in a public GitHub repository without proper `.gitignore` protection. While these keys are not passwords, exposing them without [security rules](glossary.md#security-rules) can allow unauthorized access to your Firebase services.
 
 6. **Click** [Continue to console].
 
-!!! success
+!!! success "App Registered"
     You have registered your web app. Firebase has generated your unique configuration keys.
 
 ---
@@ -126,7 +126,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
 
 2. **Confirm** your terminal is inside your COMP 1800 project folder. The folder name should appear in the terminal prompt.
 
-    !!! note
+    !!! note "Wrong Folder"
         If you are not in the correct folder, **type** `cd` followed by the path to your project folder and **press** ++enter++.
 
 3. **Type** the following command and **press** ++enter++:
@@ -145,7 +145,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
 
 4. **Create** a new file at `src/firebaseConfig.js`.
 
-    !!! note
+    !!! note "File Location"
         Your COMP 1800 Vite project stores JavaScript source files in the `src/` folder. All Firebase modules will import from this single configuration file.
 
 5. **Paste** the following code into `src/firebaseConfig.js`, replacing the placeholder values with the configuration you copied earlier:
@@ -173,7 +173,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
 
     This file initializes Firebase once and exports the `db` ([Firestore](glossary.md#cloud-firestore)) and `auth` ([Authentication](glossary.md#authentication)) instances. Every other file in your project will import from here rather than calling `initializeApp` again.
 
-    !!! warning
+    !!! warning "Replace Placeholders"
         Make sure you replace every `YOUR_...` placeholder with the actual values from your Firebase configuration. If any value is missing or incorrect, Firebase will not connect. You can find your values again in the [Firebase Console](glossary.md#firebase-console) under [Project Settings] → [Your apps] → [SDK setup and configuration]. See [Troubleshooting](troubleshooting.md) if you encounter errors.
 
 6. **Save** `src/firebaseConfig.js`.
@@ -221,7 +221,7 @@ With your configuration keys ready, you can now install the Firebase [SDK](gloss
 
 14. **Save** the file.
 
-!!! success
+!!! success "Firebase Connected"
     Your Firebase project is now connected to your COMP 1800 project. If the console printed `Firebase connected: [DEFAULT]`, Firebase is properly initialized. You are now ready to proceed to [Setting Up Firestore](task2_firestore_setup.md).
 
 ---

@@ -42,7 +42,7 @@ npm install firebase
 
 After installation completes, **restart** the Vite dev server with `npm run dev`.
 
-!!! note
+!!! note "Missing Module Path"
     If you see `Cannot find module './firebaseConfig.js'`, check that the file exists at `src/firebaseConfig.js` and that your import path is correct (e.g., `import { db } from "./firebaseConfig.js"` — the `./` and `.js` extension are both required).
 
 ---
@@ -72,7 +72,7 @@ After installation completes, **restart** the Vite dev server with `npm run dev`
     export const auth = getAuth(app);
     ```
 
-!!! warning
+!!! warning "Config Values"
     Even a single incorrect character in your configuration values will prevent Firebase from initializing. If you are unsure of your values, you can find them again in the [Firebase Console](glossary.md#firebase-console) under [Project Settings] → [Your apps] → [SDK setup and configuration].
 
 ---
@@ -108,14 +108,14 @@ After installation completes, **restart** the Vite dev server with `npm run dev`
     }
     ```
 
-    !!! note
+    !!! note "Date Format"
         Adjust the date (`2026, 8, 31`) to a reasonable future date that covers the rest of your COMP 1800 term. The format is `year, month, day`.
 
 6. **Click** [Publish].
 
 7. **Return** to your project in the browser and **refresh** the page. The `PERMISSION_DENIED` errors should now be resolved.
 
-!!! warning
+!!! warning "Development Only"
     These open rules are appropriate only for development during your COMP 1800 term. Do not use them on a production application accessible to the public.
 
 ---
@@ -134,7 +134,7 @@ After installation completes, **restart** the Vite dev server with `npm run dev`
 
 3. Your test file is being imported. **Open** `src/main.js` and **confirm** it contains `import "./firestoreTest.js";`.
 
-!!! note
+!!! note "Debugging Tip"
     If you still see no output, **try** adding `console.log("Script loaded");` at the very top of `src/firestoreTest.js` and refreshing the page. If that message does not appear in the console, the file is not being loaded — check the import path for typos.
 
 ---
@@ -196,7 +196,7 @@ npm run build
 firebase deploy --only hosting
 ```
 
-!!! warning
+!!! warning "Build Before Deploy"
     You must run `npm run build` **before every deploy**. The `firebase deploy` command uploads whatever is currently in `dist/` — if you skip the build step, it will deploy old or missing files.
 
 ---

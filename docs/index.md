@@ -38,7 +38,7 @@ Before starting these instructions, make sure you have the following installed a
 - A working **COMP 1800 [Vite](glossary.md#vite) project** with a `package.json`, a `src/` folder, and at least an `index.html` file — your project must be runnable with `npm run dev`
 - **[Google Chrome](https://www.google.com/chrome/)** browser — recommended because these instructions reference Chrome's developer tools for testing
 
-!!! note
+!!! note "Checking Node.js"
     To check if Node.js is installed, open your terminal and type `node -v`. If a version number appears (e.g., `v18.17.0`), you are ready to proceed. If not, download and install Node.js from the link above before continuing. We assume your instructor has provided you with instructions to set up and install node.js and vite. 
     
 

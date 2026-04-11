@@ -48,7 +48,7 @@ Before writing any code, you must enable the Email/Password sign-in method insid
  
     "Email/Password" should appear as an **Enabled** provider in the list.
  
-!!! success
+!!! success "Authentication Enabled"
     Email/Password authentication is now enabled for your Firebase project.
  
 ---
@@ -82,7 +82,7 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
     export const auth = getAuth(app);
     ```
  
-    !!! warning
+    !!! warning "Replace Placeholders"
         Replace every `YOUR_...` placeholder with the actual values from your Firebase project. Find these in the Firebase Console under [Project Settings] → [Your apps] → [SDK setup and configuration].
  
 3. **Save** `src/firebaseConfig.js`.
@@ -121,10 +121,6 @@ Your COMP 1800 project initialises Firebase once in `src/firebaseConfig.js` and 
     import { requireLogin } from "./authentication.js";
     requireLogin();
     ```
-
-!!! warning
-    Do **not** add `requireLogin()` to the script loaded by `login.html` itself.
- 
 ---
 
 ## Creating src/login.js
@@ -268,7 +264,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
  
     Once the user is logged in, the browser should redirect back to `index.html`.
  
-!!! success
+!!! success "Authentication Working"
     Firebase authentication is now working correctly. Users can create accounts, sign in, and sign out.
 
 ---

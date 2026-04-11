@@ -70,7 +70,7 @@ Before you can initialize or deploy, you must authenticate the Firebase CLI with
 
     The terminal displays a success message confirming you are logged in.
 
-    !!! note "One-Time Login"
+    !!! note "Login is only required once"
         You only need to log in once per computer. The CLI remembers your credentials for future sessions. If you need to switch accounts later, **run** `firebase logout` followed by `firebase login`.
 
 !!! success "Logged In"
@@ -90,8 +90,8 @@ Before you can initialize or deploy, you must authenticate the Firebase CLI with
  
     The Firebase CLI will start an interactive setup wizard.
  
-    ![Terminal showing the Firebase init hosting wizard](assets/firebase_deployment_1.png "Firebase init hosting wizard")
-    *Figure 2: The Firebase Hosting setup wizard.*
+    ![Terminal showing the Firebase init hosting wizard](assets/firebase_deployement_1.png "Firebase init hosting wizard")
+    *Figure 1: The Firebase Hosting setup wizard.*
  
 3. When prompted to "Please select an option," **select** [Use an existing project] and **press** ++enter++.
  
@@ -148,7 +148,7 @@ Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the buil
 
     ![Terminal showing Vite build output with file list](assets/firebase_deployment_2.png "Vite build output")
 
-    *Figure 3: A successful Vite build listing the files written to dist/.*
+    *Figure 2: A successful Vite build listing the files written to dist/.*
 
     !!! warning "Build Errors"
         If the build fails with an error, do not proceed to deploy. Fix the errors shown in the terminal output first. Deploying a broken build will make your live site inaccessible or broken.
@@ -183,7 +183,7 @@ Your COMP 1800 project uses [Vite](https://vitejs.dev/). **You must run the buil
     ```
  
     ![Terminal showing the deploy complete confirmation and live URL](assets/firebase_deployment_3.png "Successful Firebase deploy")
-    *Figure 4: The deploy complete confirmation with your live URL.*
+    *Figure 3: The deploy complete confirmation with your live URL.*
  
 3. **Copy** the URL shown next to "Hosting URL."
  

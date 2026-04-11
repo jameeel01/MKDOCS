@@ -6,13 +6,13 @@ This section walks you through enabling Firebase [Authentication](glossary.md#au
 
 The goal of this page is to allow users to create accounts with a username and email address, sign in with email and password, and be redirected to the `login.html` page when they visit a protected page without being signed in.
 
-!!! warning "Prerequisites"
+!!! warning "Pre-requisite steps"
     Make sure you have completed [Task 1: Setting Up Firebase](task1_firebase_setup.md) 
     and [Task 2: Setting Up Cloud Firestore Database](task2_firestore_setup.md) 
     before starting this section. Your project must already have Firebase installed 
     as a Node package and have a working `src/firebaseConfig.js` skeleton.
 
-!!! note "Firebase v9 SDK"
+!!! note "Firebase version and configuration environment"
     Your COMP 1800 project uses the **Firebase v9 modular SDK** bundled through [Vite](glossary.md#vite). All Firebase functions are imported using ES module `import` statements rather than loaded via `<script>` tags.
 ---
 
@@ -23,6 +23,9 @@ Before writing any code, you must enable the Email/Password sign-in method insid
 1. **Open** the [Firebase Console](https://console.firebase.google.com) and **click** on your project.
 
 2. **Click** [Search] in the left sidebar, then search for [Authentication].
+
+    ![Search bar showing authentication text](assets/firebase_deployment.png "Authentication section from the search bar")
+        *Figure 1: The authentication section as seen from the search bar.*
  
 3. **Click** [Get started].
  
@@ -31,15 +34,15 @@ Before writing any code, you must enable the Email/Password sign-in method insid
 5. **Click** [Email/Password] under the "Native providers" section.
  
     ![Sign-in method tab showing the Email/Password provider](assets/firebase_authentication_1.png "Email/Password sign-in provider")
-    *Figure 1: The Email/Password provider in the Sign-in method tab.*
+    *Figure 2: The Email/Password provider in the Sign-in method tab.*
 
 6. **Toggle** on the first switch labelled "Email/Password".
  
-    !!! note "Passwordless Sign-In"
+    !!! warning 
         Do **not** enable the second toggle labelled "Email link (passwordless sign-in)." Your COMP 1800 project will use standard password-based login only.
  
     ![Email/Password configuration panel with the top toggle enabled](assets/firebase_authentication_2.png "Enabling Email/Password authentication")
-    *Figure 2: Enabling the Email/Password sign-in method.*
+    *Figure 3: Enabling the Email/Password sign-in method.*
  
 7. **Click** [Save].
  
@@ -246,7 +249,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
     The login form hides and the sign-up form appears.
  
     ![login.html showing the sign-up form](assets/firebase_authentication_3.png "Sign-up form visible on login.html")
-    *Figure 3: The sign-up view of login.html.*
+    *Figure 4: The sign-up view of login.html.*
  
 4. **Enter** a username, a valid email address, and a password of at least six characters, then **click** [Sign Up!].
  
@@ -255,7 +258,7 @@ To let users sign out, add a button and import the Firebase `signOut` function i
 5. **Open** the Firebase Console, **navigate** to [Authentication] → [Users], and **confirm** your new test user appears in the list.
  
     ![Firebase Authentication Users tab showing the new test user](assets/firebase_authentication_4.png "New user in Firebase Authentication")
-    *Figure 4: The new user visible in the Firebase Console.*
+    *Figure 5: The new user visible in the Firebase Console.*
  
 6. **Click** [Sign Out], **return** to `login.html`, **enter** your email and password, and **click** [Login].
  
